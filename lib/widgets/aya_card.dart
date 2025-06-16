@@ -38,12 +38,14 @@ class QuranCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _buildIconButton(
+                  color2: Colors.red,
                   icon: Icons.favorite,
                   label: 'إضافة للمفضلة',
                   color: primaryGreen,
                 ),
                 const SizedBox(width: 8),
                 _buildIconButton(
+                  color2: Colors.white,
                   icon: Icons.play_circle_fill,
                   label: 'تشغيل',
                   color: primaryGreen,
@@ -75,10 +77,11 @@ class QuranCard extends StatelessWidget {
     required IconData icon,
     required String label,
     required Color color,
+    required Color color2
   }) {
     return ElevatedButton.icon(
       onPressed: () {},
-      icon: Icon(icon, color: Colors.white),
+      icon: Icon(icon, color:color2),
       label: Text(label,style: TextStyle(color: Colors.white),),
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
