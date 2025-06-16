@@ -29,11 +29,7 @@ class QuickActionsContainer extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Icon(
-                Icons.check_box_outline_blank,
-                color: Colors.grey.shade600,
-                size: 20,
-              ),
+              Text('📖',style: TextStyle(fontSize: 17),),
               SizedBox(width: 8),
               Text(
                 'إجراءات سريعة',

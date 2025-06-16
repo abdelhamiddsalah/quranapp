@@ -43,7 +43,7 @@ class TitlesSurahsLists extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 16),
+          
           // الأزرار
          ListView.builder(itemBuilder: (context, index) {
             return SurahContainerWidget(surahName: 'الفاتحة', surahNumber: 1, ayahCount: 7, revelationPlace: 'مكية');

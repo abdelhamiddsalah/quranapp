@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quranapp/colorss.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key, required this.title});
- final String title;
+  final String title;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,13 +21,27 @@ class HomeAppBar extends StatelessWidget {
             ),
             const Spacer(),
             IconButton(
-              icon: const Icon(Icons.search),
+              icon: Container(
+                  padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.grey, width: 1),
+                ),
+                child: const Icon(Icons.search, color: iconColor),
+              ),
               onPressed: () {
                 // Implement search functionality
               },
             ),
             IconButton(
-              icon: const Icon(Icons.notifications),
+              icon: Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.grey, width: 1),
+                ),
+                child: const Icon(Icons.notifications, color: iconColor),
+              ),
               onPressed: () {
                 // Implement notifications functionality
               },
