@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
             children: [
             HomeAppBar(title: 'الرئيسية'),
               SizedBox(height: 16),
-              IslamicVerseContainer(),
+              IslamicVerseContainer(title: 'ومن يتق الله يجعل له مخرجا', detailtitle: 'سورة الطلاق - آية 2'),
               SizedBox(height: 16),
               QuickActionsContainer(),
               SizedBox(height: 16),

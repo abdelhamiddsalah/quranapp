@@ -3,8 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quranapp/colorss.dart';
 
 class IslamicVerseContainer extends StatelessWidget {
-  const IslamicVerseContainer({super.key});
-
+  const IslamicVerseContainer({super.key,required this.title, required this.detailtitle});
+  final String title;
+  final String detailtitle;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,7 +35,7 @@ class IslamicVerseContainer extends StatelessWidget {
         children: [
           // النص الأساسي - الآية
           Text(
-            '( وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا )',
+           title,
             style: GoogleFonts.tajawal(
               fontSize: 21,
               fontWeight: FontWeight.bold,
@@ -47,7 +48,7 @@ class IslamicVerseContainer extends StatelessWidget {
           SizedBox(height: 12),
           // النص الفرعي - سورة الطلاق
           Text(
-            'سورة الطلاق - آية 2',
+          detailtitle,
             style: TextStyle(
               fontSize: 14,
               color: Colors.white.withOpacity(0.9),
