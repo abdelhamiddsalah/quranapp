@@ -5,6 +5,8 @@ import 'package:quranapp/widgets/quick_action_control.dart';
 import 'package:quranapp/widgets/titles_surahs_lists.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

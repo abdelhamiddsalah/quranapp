@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:quranapp/widgets/bottom_nav.dart';
-import 'package:quranapp/widgets/surah_details.dart';
+import 'package:quranapp/depency_injection.dart';
+import 'package:quranapp/home.dart';
 
 void main() {
+  init();
   runApp(const MyApp());
 }
 
@@ -27,11 +28,7 @@ class MyApp extends StatelessWidget {
     GlobalWidgetsLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
   ],
-      home:  SurahDetails(
-        title: 'سورة الفاتحة',
-        translation: 'الفاتحة - السورة 1',
-        audioUrl: 'https://example.com/audio.mp3',
-      )
+      home:  HomePage()
     );
   }
 }
