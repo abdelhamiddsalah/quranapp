@@ -5,6 +5,8 @@ import 'package:quranapp/widgets/quick_action_control.dart';
 import 'package:quranapp/widgets/titles_surahs_lists.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +18,7 @@ class HomePage extends StatelessWidget {
             children: [
             HomeAppBar(title: 'الرئيسية'),
               SizedBox(height: 16),
-              IslamicVerseContainer(),
+              IslamicVerseContainer(title: 'ومن يتق الله يجعل له مخرجا', detailtitle: 'سورة الطلاق - آية 2'),
               SizedBox(height: 16),
               QuickActionsContainer(),
               SizedBox(height: 16),

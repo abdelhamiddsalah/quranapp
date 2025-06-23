@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quranapp/depency_injection.dart';
+import 'package:quranapp/surahs/cubit/surahs_cubit.dart';
 import 'package:quranapp/widgets/surah_container_widget.dart';
 
 class TitlesSurahsLists extends StatelessWidget {
@@ -7,50 +10,71 @@ class TitlesSurahsLists extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(20),
-      margin: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey.shade300, width: 1),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // العنوان مع الأيقونة
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-             
-              Text('📜', style: TextStyle(fontSize: 20),),
-              SizedBox(width: 8),
-              Text(
-                'السور',
-                style: GoogleFonts.tajawal(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-                textDirection: TextDirection.rtl,
+    return BlocProvider(
+      create: (_) => sl<SurahsCubit>()..getSurahs(),
+      child: BlocBuilder<SurahsCubit, SurahsState>(
+        builder: (context, state) {
+          if (state is SurahsLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is SurahsLoaded) {
+            return Container(
+              padding: EdgeInsets.all(20),
+              margin: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.grey.shade300, width: 1),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 10,
+                    offset: Offset(0, 2),
+                  ),
+                ],
               ),
-            ],
-          ),
-          
-          // الأزرار
-         ListView.builder(itemBuilder: (context, index) {
-            return SurahContainerWidget(surahName: 'الفاتحة', surahNumber: 1, ayahCount: 7, revelationPlace: 'مكية');
-          }, itemCount: 114, shrinkWrap: true, physics: NeverScrollableScrollPhysics()),
-        ],
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text('📜', style: TextStyle(fontSize: 20)),
+                      SizedBox(width: 8),
+                      Text(
+                        'السور',
+                        style: GoogleFonts.tajawal(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                        textDirection: TextDirection.rtl,
+                      ),
+                    ],
+                  ),
+                  ListView.builder(
+                    itemCount: state.surahs.length,
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      final surah = state.surahs[index];
+                      return SurahContainerWidget(
+                        surahName: surah.nameArabic,
+                        revelationPlace: surah.revelationPlace,
+                        ayahCount: surah.ayahCount,
+                        surahNumber: surah.orderInMushaf,
+                      );
+                    },
+                  ),
+                ],
+              ),
+            );
+          } else if (state is SurahsError) {
+            return Center(child: Text('حدث خطأ: ${state.message}'));
+          }
+
+          return const SizedBox.shrink();
+        },
       ),
     );
   }
 }
- 

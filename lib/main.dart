@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:quranapp/depency_injection.dart';
+import 'package:quranapp/home.dart';
+
 import 'package:quranapp/core/cache/cache_helper.dart';
 import 'package:quranapp/depency_injection.dart';
 
@@ -10,6 +13,8 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   CacheHelper().init();
   runApp(const MyApp());
+
+
 }
 
 class MyApp extends StatelessWidget {
@@ -32,7 +37,8 @@ class MyApp extends StatelessWidget {
     GlobalWidgetsLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
   ],
-      home:  SignUpScreen()
+
+      home:  HomePage()
     );
   }
 }

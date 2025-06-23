@@ -27,7 +27,7 @@ class HomeAppBar extends StatelessWidget {
                   shape: BoxShape.circle,
                   border: Border.all(color: Colors.grey, width: 1),
                 ),
-                child: const Icon(Icons.search, color: iconColor),
+                child: const Icon(Icons.light_mode_sharp, color: iconColor),
               ),
               onPressed: () {
                 // Implement search functionality
