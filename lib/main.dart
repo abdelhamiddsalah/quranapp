@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:quranapp/home.dart';
-import 'package:quranapp/widgets/bottom_nav.dart';
+import 'package:quranapp/core/cache/cache_helper.dart';
+import 'package:quranapp/depency_injection.dart';
+
+import 'package:quranapp/features/auth/signup/presention/views/signup.dart';
 
 void main() {
+    setup();
+  WidgetsFlutterBinding.ensureInitialized();
+  CacheHelper().init();
   runApp(const MyApp());
 }
 
@@ -27,7 +32,7 @@ class MyApp extends StatelessWidget {
     GlobalWidgetsLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
   ],
-      home:  MyHomePage()
+      home:  SignUpScreen()
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quranapp/home.dart';
 import 'package:quranapp/widgets/favourite_widget.dart';
+import 'package:quranapp/widgets/profile.dart';
 import 'package:quranapp/widgets/quran_search_widget.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -12,7 +13,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 4;
 
   final List<Widget> _pages = [
-    ProfilePage(),
+    ProfileScreen(),
     FavoriteVerses(),
     BookmarksPage(),
     QuranSearchWidget(),
