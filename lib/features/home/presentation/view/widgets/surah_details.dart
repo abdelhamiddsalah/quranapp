@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quranapp/widgets/aya_card.dart';
-import 'package:quranapp/widgets/home_appbar.dart';
-import 'package:quranapp/widgets/islamic_aya_today.dart';
+import 'package:quranapp/features/home/presentation/view/widgets/aya_card.dart';
+import 'package:quranapp/features/home/presentation/view/widgets/home_appbar.dart';
+import 'package:quranapp/features/home/presentation/view/widgets/islamic_aya_today.dart';
 
 class SurahDetails extends StatelessWidget {
   final String title;

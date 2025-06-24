@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:quranapp/features/auth/signup/data/models/signup_model.dart';
 import 'package:quranapp/features/auth/signup/data/models/signup_request_model.dart';
 import 'package:quranapp/features/auth/signup/data/repo/signup_repo.dart';
-import 'package:quranapp/features/auth/signup/data/repo/signup_repo_impli.dart';
 
 part 'signup_state.dart';
 

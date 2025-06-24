@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quranapp/home.dart';
-import 'package:quranapp/widgets/favourite_widget.dart';
-import 'package:quranapp/widgets/profile.dart';
-import 'package:quranapp/widgets/quran_search_widget.dart';
+import 'package:quranapp/features/home/presentation/view/home.dart';
+import 'package:quranapp/features/home/presentation/view/widgets/favourite_widget.dart';
+import 'package:quranapp/features/home/presentation/view/widgets/profile.dart';
+import 'package:quranapp/features/home/presentation/view/widgets/quran_search_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   @override

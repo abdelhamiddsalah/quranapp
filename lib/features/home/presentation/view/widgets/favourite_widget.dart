@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quranapp/widgets/home_appbar.dart';
+import 'package:quranapp/features/home/presentation/view/widgets/home_appbar.dart';
 
 class FavoriteVerses extends StatelessWidget {
   const FavoriteVerses({super.key});
