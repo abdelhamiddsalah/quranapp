@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quranapp/colorss.dart';
+import 'package:quranapp/features/auth/profile/presention/manger/cubit/profile_cubit.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -73,39 +75,63 @@ class ProfileScreen extends StatelessWidget {
 
           // Menu Items
           Expanded(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              children: [
-                _buildMenuItem(
-                  icon: Icons.settings,
-                  title: 'الإعدادات',
-                  onTap: () {},
-                ),
-                _buildMenuItem(
-                  icon: Icons.notifications,
-                  title: 'التنبيهات',
-                  color: Colors.amber,
-                  onTap: () {},
-                ),
-                _buildMenuItem(
-                  icon: Icons.mobile_friendly,
-                  title: 'مشاركة التطبيق',
-                  color: Colors.blue,
-                  onTap: () {},
-                ),
-                _buildMenuItem(
-                  icon: Icons.star,
-                  title: 'تقييم التطبيق',
-                  color: Colors.amber,
-                  onTap: () {},
-                ),
-                _buildMenuItem(
-                  icon: Icons.help_outline,
-                  title: 'المساعدة',
-                  color: Colors.red,
-                  onTap: () {},
-                ),
-              ],
+            child: BlocConsumer<ProfileCubit, ProfileState>(
+              listener: (context, state) {
+                if (state is ProfileErrorState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('خطأ: ${state.errMessage}'),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                  
+                }
+              },
+              builder: (context, state) {
+                if (state is ProfileSuccessState) {
+                  return ListView(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  children: [
+                    _buildMenuItem(
+                      icon: Icons.person,
+                      title: state.usermodel.email,
+                      color: Colors.blue,
+                      onTap: () {},
+                    ),
+                     _buildMenuItem(
+                      icon: Icons.help_outline,
+                      title: state.usermodel.username,
+                      color: Colors.red,
+                      onTap: () {},
+                    ),
+                    _buildMenuItem(
+                      icon: Icons.notifications,
+                      title: 'التنبيهات',
+                      color: Colors.amber,
+                      onTap: () {},
+                    ),
+                    _buildMenuItem(
+                      icon: Icons.mobile_friendly,
+                      title: 'مشاركة التطبيق',
+                      color: Colors.blue,
+                      onTap: () {},
+                    ),
+                    _buildMenuItem(
+                      icon: Icons.star,
+                      title: 'تقييم التطبيق',
+                      color: Colors.amber,
+                      onTap: () {},
+                    ),
+                   
+                  ],
+                );
+                }
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+                
+              }
+              
             ),
           ),
         ],
