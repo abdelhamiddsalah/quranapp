@@ -7,15 +7,24 @@ class SurahImpl {
   final DioConsumer dioConsumer;
   SurahImpl(this.dioConsumer);
 
- Future<Either<String, List<SurahModel>>> getSurahs() async {
-  try {
-    var res = await dioConsumer.get(path: EndPoints.surahEndpoint);
-    List<SurahModel> surahs = (res as List)
-        .map((json) => SurahModel.fromJson(json))
-        .toList();
-    return right(surahs);
-  } catch (e) {
-    return left(e.toString());
-  }
+Future<Either<String, List<SurahModel>>> getSurahs() async {
+  final result = await dioConsumer.get(path: EndPoints.surahEndpoint);
+
+  return result.fold(
+    (l) => Left(l),
+    (response) {
+      try {
+        final data = response.data as List;
+        
+        final surahs = data
+            .map((e) => SurahModel.fromJson(e ))
+            .toList();
+        return Right(surahs);
+      } catch (e) {
+        return Left('خطأ في تحويل البيانات: ${e.toString()}');
+      }
+    },
+  );
 }
+
 }

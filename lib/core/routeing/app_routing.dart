@@ -9,10 +9,12 @@ import 'package:quranapp/features/home/presentation/view/home.dart';
 
 
 final GoRouter router = GoRouter(
+   
   routes: [
+  
     GoRoute(
       path: Routes.splash,
-      builder: (context, state) =>  WelcomeScreen(),
+      builder: (context, state) =>  HomePage(),
     ),
     GoRoute(
       path: Routes.login,
