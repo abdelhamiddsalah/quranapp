@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:quranapp/core/routeing/routes.dart';
 import 'package:quranapp/core/widgets/custom_text_field.dart';
 import 'package:quranapp/features/auth/login/data/models/login_request_model.dart';
 import 'package:quranapp/features/auth/login/presention/manger/cubit/login_cubit.dart';
@@ -22,6 +24,9 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(const SnackBar(content: Text('تم التسجيل بنجاح')));
+          GoRouter.of(
+            context,
+          ).push(Routes.home); // Assuming 'home' is the name of your home route
         } else if (state is LoginErrorState) {
           ScaffoldMessenger.of(
             context,
@@ -121,6 +126,10 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                                 .text,
                           ),
                         );
+                        context.read<LoginCubit>().emailController.clear();
+                        context.read<LoginCubit>().passwordController.clear();
+                        FocusScope.of(context).unfocus();
+
                       }
                     },
                     style: ElevatedButton.styleFrom(

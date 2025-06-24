@@ -26,6 +26,10 @@ class CustomTextField extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
         labelText: label,
+        labelStyle: TextStyle(
+          color: Colors.grey[600],
+          fontSize: 16,
+        ),
         prefixIcon: Icon(icon, color: Colors.green),
         suffixIcon: suffixIcon,
         border: OutlineInputBorder(

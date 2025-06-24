@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:quranapp/features/auth/signup/data/models/signup_model.dart';
 import 'package:quranapp/features/auth/signup/data/models/signup_request_model.dart';
 import 'package:quranapp/features/auth/signup/data/repo/signup_repo.dart';
-import 'package:quranapp/features/auth/signup/data/repo/signup_repo_impli.dart';
 
 part 'signup_state.dart';
 
@@ -22,7 +21,7 @@ class SignupCubit extends Cubit<SignupState> {
     final result = await signupRepoImpli.signup(signupRequestModel);
 
     result.fold((l) => emit(SignupErrorState(errMessage: l.errMessage)), (r) {
-      if (r.status == 200) {
+      if (r.token != null || r.status == 200) {
         emit(SignupSuccessState(signupModel: r));
       } else {
         emit(SignupErrorState(errMessage: r.message));

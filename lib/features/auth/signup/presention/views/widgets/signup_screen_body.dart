@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:quranapp/core/routeing/routes.dart';
 import 'package:quranapp/core/widgets/custom_text_field.dart';
 import 'package:quranapp/features/auth/signup/data/models/signup_request_model.dart';
 import 'package:quranapp/features/auth/signup/presention/manger/cubit/signup_cubit.dart';
@@ -20,10 +22,17 @@ class _SignupScreenBodyState extends State<SignupScreenBody> {
       listener: (context, state) {
         if (state is SignupSuccessState) {
           ScaffoldMessenger.of(context).showSnackBar(
+            
             const SnackBar(
+              
               content: Text('تم التسجيل بنجاح'),
             ),
+            
+            
           );
+               GoRouter.of(
+            context,
+          ).push(Routes.home); // Assuming 'home' is the name of your home route
         }else if (state is SignupErrorState) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -168,6 +177,12 @@ class _SignupScreenBodyState extends State<SignupScreenBody> {
                                 .text,
                           ),
                         );
+                        context.read<SignupCubit>().emailController.clear();
+                        context.read<SignupCubit>().passwordController.clear();
+                        context.read<SignupCubit>().nameController.clear();
+                        context.read<SignupCubit>().confirmPasswordController.clear();
+                        FocusScope.of(context).unfocus();
+
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -186,6 +201,35 @@ class _SignupScreenBodyState extends State<SignupScreenBody> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                  ),
+                  const SizedBox(height: 20),
+
+                  // رابط تسجيل الدخول
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'لديك حساب بالفعل؟ ',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+             GoRouter.of(context).push(Routes.login);
+                        },
+                        child: const Text(
+                          'تسجيل دخول',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 20),
                 ],

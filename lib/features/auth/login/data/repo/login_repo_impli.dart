@@ -15,7 +15,7 @@ class LoginRepoImpli implements LoginRepo {
     try {
   final response = await apiConsumer.post(
     data: loginRequestModel.toJson(),
-    path: EndPoints.signup,
+    path: EndPoints.login,
   );
   return response.fold(
      (l) => Left(Failure(errMessage: l)),
