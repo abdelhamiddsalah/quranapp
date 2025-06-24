@@ -2,19 +2,19 @@ import 'package:dartz/dartz.dart';
 import 'package:quranapp/core/api/dio_consumer.dart';
 import 'package:quranapp/core/api/end_points.dart';
 import 'package:quranapp/core/errors/failure.dart';
+import 'package:quranapp/features/auth/login/data/models/login_request_model.dart';
+import 'package:quranapp/features/auth/login/data/repo/login_repo.dart';
 import 'package:quranapp/features/auth/signup/data/models/signup_model.dart';
-import 'package:quranapp/features/auth/signup/data/models/signup_request_model.dart';
-import 'package:quranapp/features/auth/signup/data/repo/signup_repo.dart';
 
-class SignupRepoImpli implements SignupRepo {
+class LoginRepoImpli implements LoginRepo {
   final DioConsumer apiConsumer;
 
-  SignupRepoImpli({required this.apiConsumer});
+  LoginRepoImpli({required this.apiConsumer});
   @override
-  Future<Either<Failure, Auth>> signup(SignupRequestModel signupRequestModel) async {
+  Future<Either<Failure, Auth>> login(LoginRequestModel loginRequestModel) async {
     try {
   final response = await apiConsumer.post(
-    data: signupRequestModel.toJson(),
+    data: loginRequestModel.toJson(),
     path: EndPoints.signup,
   );
   return response.fold(

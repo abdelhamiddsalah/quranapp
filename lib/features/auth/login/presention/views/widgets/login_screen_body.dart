@@ -1,44 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quranapp/core/widgets/custom_text_field.dart';
-import 'package:quranapp/features/auth/signup/data/models/signup_request_model.dart';
-import 'package:quranapp/features/auth/signup/presention/manger/cubit/signup_cubit.dart';
+import 'package:quranapp/features/auth/login/data/models/login_request_model.dart';
+import 'package:quranapp/features/auth/login/presention/manger/cubit/login_cubit.dart';
 
-class SignupScreenBody extends StatefulWidget {
-  const SignupScreenBody({super.key});
+class LoginScreenBody extends StatefulWidget {
+  const LoginScreenBody({super.key});
 
   @override
-  State<SignupScreenBody> createState() => _SignupScreenBodyState();
+  State<LoginScreenBody> createState() => _LoginScreenBodyState();
 }
 
-class _SignupScreenBodyState extends State<SignupScreenBody> {
+class _LoginScreenBodyState extends State<LoginScreenBody> {
   bool isPasswordVisible = false;
   bool isConfirmPasswordVisible = false;
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignupCubit, SignupState>(
+    return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
-        if (state is SignupSuccessState) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('تم التسجيل بنجاح'),
-            ),
-          );
-        }else if (state is SignupErrorState) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.errMessage),
-            ),
-          );
+        if (state is LoginSuccessState) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(const SnackBar(content: Text('تم التسجيل بنجاح')));
+        } else if (state is LoginErrorState) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.errMessage)));
         }
-      
       },
       builder: (context, state) {
         return SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(20),
             child: Form(
-              key: context.read<SignupCubit>().formKey,
+              key: context.read<LoginCubit>().formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -54,14 +49,14 @@ class _SignupScreenBodyState extends State<SignupScreenBody> {
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: const Icon(
-                            Icons.person_add,
+                            Icons.login_outlined,
                             size: 50,
                             color: Colors.white,
                           ),
                         ),
                         const SizedBox(height: 20),
                         const Text(
-                          'إنشاء حساب جديد',
+                          ' تسجيل الدخول',
                           style: TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
@@ -70,27 +65,16 @@ class _SignupScreenBodyState extends State<SignupScreenBody> {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          'قم بملء البيانات التالية لإنشاء حسابك',
+                          'قم بملء البيانات التالية  ',
                           style: TextStyle(fontSize: 16, color: Colors.grey),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 40),
-
-                  // الاسم الكامل
-                  CustomTextField(
-                    controller: context
-                        .read<SignupCubit>()
-                        .nameController,
-                    label: 'الاسم الكامل',
-                    icon: Icons.person_outline,
-                  ),
-                  const SizedBox(height: 20),
 
                   // البريد الإلكتروني
                   CustomTextField(
-                    controller: context.read<SignupCubit>().emailController,
+                    controller: context.read<LoginCubit>().emailController,
                     label: 'البريد الإلكتروني',
                     icon: Icons.email_outlined,
                     keyboardType: TextInputType.emailAddress,
@@ -100,7 +84,7 @@ class _SignupScreenBodyState extends State<SignupScreenBody> {
                   // كلمة المرور
                   CustomTextField(
                     label: 'كلمة المرور',
-                    controller: context.read<SignupCubit>().passwordController,
+                    controller: context.read<LoginCubit>().passwordController,
                     icon: Icons.lock_outline,
                     obscureText: !isPasswordVisible,
                     suffixIcon: IconButton(
@@ -114,57 +98,26 @@ class _SignupScreenBodyState extends State<SignupScreenBody> {
                       },
                     ),
                   ),
-                  const SizedBox(height: 20),
 
-                  // تأكيد كلمة المرور
-                  CustomTextField(
-                    controller: context
-                        .read<SignupCubit>()
-                        .confirmPasswordController,
-                    label: 'تأكيد كلمة المرور',
-                    icon: Icons.lock_outline,
-                    obscureText: !isConfirmPasswordVisible,
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        isConfirmPasswordVisible
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                      ),
-                      onPressed: () {
-                        setState(
-                          () => isConfirmPasswordVisible =
-                              !isConfirmPasswordVisible,
-                        );
-                      },
-                    ),
-                  ),
                   const SizedBox(height: 30),
 
                   // زر إنشاء حساب
                   ElevatedButton(
                     onPressed: () {
                       if (context
-                          .read<SignupCubit>()
+                          .read<LoginCubit>()
                           .formKey
                           .currentState!
                           .validate()) {
-                        context.read<SignupCubit>().signup(
-                          SignupRequestModel(
-                            name: context
-                                .read<SignupCubit>()
-                                .nameController
-                                .text,
+                        context.read<LoginCubit>().signup(
+                          LoginRequestModel(
                             email: context
-                                .read<SignupCubit>()
+                                .read<LoginCubit>()
                                 .emailController
                                 .text,
                             password: context
-                                .read<SignupCubit>()
+                                .read<LoginCubit>()
                                 .passwordController
-                                .text,
-                            confirmPassword: context
-                                .read<SignupCubit>()
-                                .confirmPasswordController
                                 .text,
                           ),
                         );
@@ -179,13 +132,18 @@ class _SignupScreenBodyState extends State<SignupScreenBody> {
                       ),
                       elevation: 2,
                     ),
-                    child: state is SignupLoadingState ? const CircularProgressIndicator(strokeWidth: 2, color: Colors.white,) : Text(
-                      'إنشاء حساب',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    child: state is LoginLoadingState
+                        ? const CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.white,
+                          )
+                        : Text(
+                            ' تسجيل الدخول',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                   ),
                   const SizedBox(height: 20),
                 ],

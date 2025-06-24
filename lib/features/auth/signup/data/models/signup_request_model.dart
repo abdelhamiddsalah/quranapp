@@ -14,10 +14,10 @@ class SignupRequestModel {
 
   Map<String, dynamic> toJson() {
     return {
-      'name': name,
+      'username': name,
       'email': email,
       'password': password,
-      'password_confirmation': confirmPassword,
+      'confirmPassword': confirmPassword,
     };
   }
 }
