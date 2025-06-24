@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quranapp/colorss.dart';
+import 'package:quranapp/core/routeing/routes.dart';
 
 class QuickActionsContainer extends StatelessWidget {
   const QuickActionsContainer({super.key});
@@ -29,7 +31,7 @@ class QuickActionsContainer extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text('📖',style: TextStyle(fontSize: 17),),
+              Text('📖', style: TextStyle(fontSize: 17)),
               SizedBox(width: 8),
               Text(
                 'إجراءات سريعة',
@@ -49,7 +51,12 @@ class QuickActionsContainer extends StatelessWidget {
             children: [
               _buildActionButton('وضع الحلقة'),
               _buildActionButton('المسألة'),
-              _buildActionButton('البحث'),
+              GestureDetector(
+                onTap: () {
+                  GoRouter.of(context).push(Routes.search);
+                },
+                child: _buildActionButton('البحث'),
+              ),
             ],
           ),
         ],
@@ -57,28 +64,29 @@ class QuickActionsContainer extends StatelessWidget {
     );
   }
 }
- Widget _buildActionButton(String text) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      decoration: BoxDecoration(
-        color: primaryGreen,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Color(0xFF4CAF50).withOpacity(0.3),
-            blurRadius: 4,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Text(
-        text,
-        style: GoogleFonts.tajawal(
-          color: Colors.white,
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
+
+Widget _buildActionButton(String text) {
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+    decoration: BoxDecoration(
+      color: primaryGreen,
+      borderRadius: BorderRadius.circular(20),
+      boxShadow: [
+        BoxShadow(
+          color: Color(0xFF4CAF50).withOpacity(0.3),
+          blurRadius: 4,
+          offset: Offset(0, 2),
         ),
-        textDirection: TextDirection.rtl,
+      ],
+    ),
+    child: Text(
+      text,
+      style: GoogleFonts.tajawal(
+        color: Colors.white,
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
       ),
-    );
-  }
+      textDirection: TextDirection.rtl,
+    ),
+  );
+}

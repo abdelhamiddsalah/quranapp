@@ -5,6 +5,7 @@ import 'package:quranapp/features/auth/login/presention/views/login_screen.dart'
 import 'package:quranapp/features/auth/signup/presention/views/signup.dart';
 import 'package:quranapp/features/auth/welcome/presention/welcome_view.dart';
 import 'package:quranapp/features/home/presentation/view/home.dart';
+import 'package:quranapp/features/home/presentation/view/widgets/quran_search_widget.dart';
 
 
 
@@ -14,7 +15,10 @@ final GoRouter router = GoRouter(
   
     GoRoute(
       path: Routes.splash,
-      builder: (context, state) =>   WelcomeScreen(),
+
+      builder: (context, state) =>  WelcomeScreen(),
+
+
     ),
     GoRoute(
       path: Routes.login,
@@ -28,7 +32,10 @@ final GoRouter router = GoRouter(
       path: Routes.home,
       builder: (context, state) => const HomePage(),
     ),
-   
+     GoRoute(
+      path: Routes.search,
+      builder: (context, state) => const QuranSearchWidget(),
+    ),
     
   ],
   errorBuilder: (context, state) => const Scaffold(
