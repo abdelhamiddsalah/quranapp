@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:quranapp/surahs/imples/surah_impl.dart';
-import 'package:quranapp/surahs/models/surah_model.dart';
+import 'package:quranapp/features/home/data/repo/surah_impl.dart';
+import 'package:quranapp/features/home/data/models/surah_model.dart';
 
 part 'surahs_state.dart';
 

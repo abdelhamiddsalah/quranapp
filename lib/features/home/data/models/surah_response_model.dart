@@ -1,5 +1,5 @@
-import 'package:quranapp/surahs/models/aya_model.dart';
-import 'package:quranapp/surahs/models/surah_model.dart';
+import 'package:quranapp/features/home/data/models/aya_model.dart';
+import 'package:quranapp/features/home/data/models/surah_model.dart';
 
 class SurahResponseModel {
   final SurahModel surah;

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quranapp/depency_injection.dart';
-import 'package:quranapp/surahs/cubit/surahs_cubit.dart';
-import 'package:quranapp/widgets/surah_container_widget.dart';
+import 'package:quranapp/features/home/presentation/manager/cubit/surahs_cubit.dart';
+import 'package:quranapp/features/home/presentation/view/widgets/surah_container_widget.dart';
 
 class TitlesSurahsLists extends StatelessWidget {
   const TitlesSurahsLists({super.key});

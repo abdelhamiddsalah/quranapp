@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quranapp/widgets/home_appbar.dart';
-import 'package:quranapp/widgets/islamic_aya_today.dart';
-import 'package:quranapp/widgets/quick_action_control.dart';
-import 'package:quranapp/widgets/titles_surahs_lists.dart';
+import 'package:quranapp/features/home/presentation/view/widgets/home_appbar.dart';
+import 'package:quranapp/features/home/presentation/view/widgets/islamic_aya_today.dart';
+import 'package:quranapp/features/home/presentation/view/widgets/quick_action_control.dart';
+import 'package:quranapp/features/home/presentation/view/widgets/titles_surahs_lists.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
