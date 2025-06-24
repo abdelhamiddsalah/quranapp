@@ -8,6 +8,7 @@ import 'package:quranapp/features/auth/profile/presention/manger/cubit/profile_c
 import 'package:quranapp/features/auth/signup/presention/views/signup.dart';
 import 'package:quranapp/features/auth/welcome/presention/welcome_view.dart';
 import 'package:quranapp/features/home/presentation/view/home.dart';
+import 'package:quranapp/features/home/presentation/view/search_view.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/bottom_nav.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/profile.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/quran_search_widget.dart';
@@ -26,7 +27,7 @@ final GoRouter router = GoRouter(
     GoRoute(path: Routes.home, builder: (context, state) => const HomePage()),
     GoRoute(
       path: Routes.search,
-      builder: (context, state) => const QuranSearchWidget(),
+      builder: (context, state) => const SearchView(),
     ),
     GoRoute(
       path: Routes.bottomnav,

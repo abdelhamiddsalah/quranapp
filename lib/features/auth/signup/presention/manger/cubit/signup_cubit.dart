@@ -21,7 +21,7 @@ class SignupCubit extends Cubit<SignupState> {
     final result = await signupRepoImpli.signup(signupRequestModel);
 
     result.fold((l) => emit(SignupErrorState(errMessage: l.errMessage)), (r) {
-      if (r.token != null || r.status == 200) {
+      if (r.token != null ) {
         emit(SignupSuccessState(signupModel: r));
       } else {
         emit(SignupErrorState(errMessage: r.message));

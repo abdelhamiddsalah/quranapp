@@ -75,6 +75,7 @@ class ProfileScreen extends StatelessWidget {
 
           // Menu Items
           Expanded(
+
             child: BlocConsumer<ProfileCubit, ProfileState>(
               listener: (context, state) {
                 if (state is ProfileErrorState) {
@@ -131,9 +132,8 @@ class ProfileScreen extends StatelessWidget {
                 );
                 
               }
-              
-            ),
-          ),
+  ),
+),
         ],
       ),
     );

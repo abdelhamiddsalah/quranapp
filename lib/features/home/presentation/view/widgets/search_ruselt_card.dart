@@ -41,7 +41,7 @@ class SearchRuseltCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  'سورة ${searchModel.ayaTextStripped}',
+                  'سورة ${searchModel.surahName}',
                   style: GoogleFonts.tajawal(
                     fontSize: 12,
                     color: primaryGreen,
