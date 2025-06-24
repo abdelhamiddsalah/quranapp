@@ -1,21 +1,35 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:quranapp/apis/dio_consumer.dart';
-import 'package:quranapp/surahs/cubit/surahs_cubit.dart';
-import 'package:quranapp/surahs/imples/surah_impl.dart';
+import 'package:quranapp/core/api/dio_consumer.dart';
+import 'package:quranapp/features/auth/login/data/repo/login_repo.dart';
+import 'package:quranapp/features/auth/login/data/repo/login_repo_impli.dart';
+import 'package:quranapp/features/auth/login/presention/manger/cubit/login_cubit.dart';
+import 'package:quranapp/features/auth/signup/data/repo/signup_repo.dart';
+import 'package:quranapp/features/auth/signup/data/repo/signup_repo_impli.dart';
+import 'package:quranapp/features/auth/signup/presention/manger/cubit/signup_cubit.dart';
+
 
 final sl = GetIt.instance;
 
-void init() {
-  // تسجيل Dio
-  sl.registerLazySingleton<Dio>(() => Dio());
+void setup() {
+  // Dependencies
+  sl.registerLazySingleton<DioConsumer>(() => DioConsumer(dio: Dio()));
+  
+//
 
-  // تسجيل DioConsumer وتعتمد على Dio
-  sl.registerLazySingleton(() => DioConsumer(dio: sl()));
+ // Repositry
+ 
+  sl.registerLazySingleton<SignupRepo>(() => SignupRepoImpli(apiConsumer: sl()));
+  sl.registerLazySingleton<LoginRepo>(() => LoginRepoImpli(apiConsumer: sl()));
 
-  // تسجيل SurahImpl وتعتمد على DioConsumer
-  sl.registerLazySingleton(() => SurahImpl(sl()));
+ 
+  // Cubit
 
-  // تسجيل SurahsCubit وتعتمد على SurahImpl
-  sl.registerFactory(() => SurahsCubit(sl()));
+
+
+
+ sl.registerFactory(() => SignupCubit(sl()));
+ sl.registerFactory(() => LoginCubit(sl()));
+
+  
 }
