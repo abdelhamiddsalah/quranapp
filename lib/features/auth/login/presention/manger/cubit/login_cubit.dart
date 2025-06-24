@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:quranapp/core/cache/cache_helper.dart';
 import 'package:quranapp/features/auth/login/data/models/login_request_model.dart';
 import 'package:quranapp/features/auth/login/data/repo/login_repo.dart';
 import 'package:quranapp/features/auth/signup/data/models/signup_model.dart';
@@ -23,6 +24,7 @@ class LoginCubit extends Cubit<LoginState> {
     result.fold((l) => emit(LoginErrorState(errMessage: l.errMessage)), (r) {
       if (r.token != null || r.status == 200) {
         emit(LoginSuccessState(signupModel: r));
+        CacheHelper().saveData(key: 'token', value: r.token);
       } else {
         emit(LoginErrorState(errMessage: r.message));
       }

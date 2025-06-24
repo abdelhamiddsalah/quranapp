@@ -14,7 +14,10 @@ final GoRouter router = GoRouter(
   
     GoRoute(
       path: Routes.splash,
+
       builder: (context, state) =>  WelcomeScreen(),
+
+
     ),
     GoRoute(
       path: Routes.login,
