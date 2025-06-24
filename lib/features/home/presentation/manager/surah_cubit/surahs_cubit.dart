@@ -17,5 +17,5 @@ class SurahsCubit extends Cubit<SurahsState> {
       (r) => emit(SurahsLoaded(r)), // r هنا قائمة
     );
   }
-
+ 
 }

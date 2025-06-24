@@ -11,7 +11,7 @@ import 'package:quranapp/features/auth/signup/data/repo/signup_repo.dart';
 import 'package:quranapp/features/auth/signup/data/repo/signup_repo_impli.dart';
 import 'package:quranapp/features/auth/signup/presention/manger/cubit/signup_cubit.dart';
 import 'package:quranapp/features/home/data/repo/surah_impl.dart';
-import 'package:quranapp/features/home/presentation/manager/cubit/surahs_cubit.dart';
+import 'package:quranapp/features/home/presentation/manager/surah_cubit/surahs_cubit.dart';
 
 final sl = GetIt.instance;
 
