@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:quranapp/core/api/dio_consumer.dart';
 import 'package:quranapp/core/api/end_points.dart';
+import 'package:quranapp/features/home/data/models/search_model.dart';
 import 'package:quranapp/features/home/data/models/surah_model.dart';
 
 class SurahImpl {
@@ -22,7 +23,7 @@ class SurahImpl {
     });
   }
 
-  Future<Either<String, List<SurahModel>>> getAyatBysearch(String keyword) async {
+  Future<Either<String, List<SearchModel>>> getAyatBysearch(String keyword) async {
   final encodedKeyword = Uri.encodeComponent(keyword);
   final result = await dioConsumer.get(path: EndPoints.search(encodedKeyword));
 
@@ -32,7 +33,7 @@ class SurahImpl {
 
       if (data is List) {
         final surahs = data
-            .map((e) => SurahModel.fromJson(e as Map<String, dynamic>))
+            .map((e) => SearchModel.fromJson(e as Map<String, dynamic>))
             .toList();
         return Right(surahs);
       } else {
