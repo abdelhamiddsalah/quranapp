@@ -74,7 +74,7 @@ Future<Either<String, Response>> post({
       options: Options(
         headers: requestHeaders,
         responseType: ResponseType.json,
-        validateStatus: (status) => status! < 500,
+      //  validateStatus: (status) => status! < 500,
       ),
     );
 
