@@ -22,7 +22,7 @@ class LoginCubit extends Cubit<LoginState> {
     final result = await signupRepoImpli.login(loginRequestModel);
 
     result.fold((l) => emit(LoginErrorState(errMessage: l.errMessage)), (r) {
-      if (r.token != null || r.status == 200) {
+      if (r.token != null ) {
         emit(LoginSuccessState(signupModel: r));
         CacheHelper().saveData(key: 'token', value: r.token);
        
