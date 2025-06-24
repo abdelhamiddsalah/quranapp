@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quranapp/colorss.dart';
-import 'package:quranapp/features/home/data/models/search_model.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/home_appbar.dart';
-import 'package:quranapp/features/home/presentation/view/widgets/search_ruselt_card.dart';
 
 class QuranSearchWidget extends StatefulWidget {
   const QuranSearchWidget({super.key});

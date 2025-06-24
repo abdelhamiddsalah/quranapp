@@ -76,11 +76,7 @@ class ProfileScreen extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               children: [
-                _buildMenuItem(
-                  icon: Icons.settings,
-                  title: 'الإعدادات',
-                  onTap: () {},
-                ),
+            
                 _buildMenuItem(
                   icon: Icons.notifications,
                   title: 'التنبيهات',
