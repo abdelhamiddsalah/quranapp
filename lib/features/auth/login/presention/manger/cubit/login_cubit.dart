@@ -25,6 +25,7 @@ class LoginCubit extends Cubit<LoginState> {
       if (r.token != null || r.status == 200) {
         emit(LoginSuccessState(signupModel: r));
         CacheHelper().saveData(key: 'token', value: r.token);
+       
       } else {
         emit(LoginErrorState(errMessage: r.message));
       }

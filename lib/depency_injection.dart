@@ -4,6 +4,9 @@ import 'package:quranapp/core/api/dio_consumer.dart';
 import 'package:quranapp/features/auth/login/data/repo/login_repo.dart';
 import 'package:quranapp/features/auth/login/data/repo/login_repo_impli.dart';
 import 'package:quranapp/features/auth/login/presention/manger/cubit/login_cubit.dart';
+import 'package:quranapp/features/auth/profile/data/repo/profile_repo.dart';
+import 'package:quranapp/features/auth/profile/data/repo/profile_repo_impli.dart';
+import 'package:quranapp/features/auth/profile/presention/manger/cubit/profile_cubit.dart';
 import 'package:quranapp/features/auth/signup/data/repo/signup_repo.dart';
 import 'package:quranapp/features/auth/signup/data/repo/signup_repo_impli.dart';
 import 'package:quranapp/features/auth/signup/presention/manger/cubit/signup_cubit.dart';
@@ -26,10 +29,12 @@ sl.registerLazySingleton(()=> SurahImpl(sl()));
     () => SignupRepoImpli(apiConsumer: sl()),
   );
   sl.registerLazySingleton<LoginRepo>(() => LoginRepoImpli(apiConsumer: sl()));
+  sl.registerLazySingleton<ProfileRepo>(() => ProfileRepoImpli(dioConsumer: sl()));
 
   // Cubit
 
   sl.registerFactory(() => SignupCubit(sl()));
   sl.registerFactory(() => LoginCubit(sl()));
   sl.registerFactory(() => SurahsCubit(sl()));
+  sl.registerFactory(() => ProfileCubit(sl()));
 }

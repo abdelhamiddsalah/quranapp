@@ -9,7 +9,7 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   final ProfileRepoImpli profilerepoimpl;
 
-  ProfileCubit(super.initialState, this.profilerepoimpl);
+ ProfileCubit(this.profilerepoimpl) : super(ProfileInitial());
 Future<void> getProfile(int id) async {
     emit(ProfileLoadingState());
     final result = await profilerepoimpl.getProfile(id);

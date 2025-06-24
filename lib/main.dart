@@ -9,6 +9,7 @@ import 'depency_injection.dart';
 
 void main() {
     setup();
+    
   WidgetsFlutterBinding.ensureInitialized();
   CacheHelper().init();
 
