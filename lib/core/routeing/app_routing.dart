@@ -5,6 +5,7 @@ import 'package:quranapp/features/auth/login/presention/views/login_screen.dart'
 import 'package:quranapp/features/auth/signup/presention/views/signup.dart';
 import 'package:quranapp/features/auth/welcome/presention/welcome_view.dart';
 import 'package:quranapp/features/home/presentation/view/home.dart';
+import 'package:quranapp/features/home/presentation/view/widgets/bottom_nav.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/quran_search_widget.dart';
 
 
@@ -36,7 +37,10 @@ final GoRouter router = GoRouter(
       path: Routes.search,
       builder: (context, state) => const QuranSearchWidget(),
     ),
-    
+     GoRoute(
+      path: Routes.bottomnav,
+      builder: (context, state) => const MyHomePage(),
+    ),
   ],
   errorBuilder: (context, state) => const Scaffold(
     body: Center(child: Text('Page not found')),
