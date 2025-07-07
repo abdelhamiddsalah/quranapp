@@ -5,5 +5,5 @@ class EndPoints {
   static const String login = "auth/login"; 
    static const String surahEndpoint = 'surahs';
   static String search(String keyword) => "api/search?keyword=$keyword";
-  static String profile(int id) => "profile/$id";
+  static String profile ="profile";
 }

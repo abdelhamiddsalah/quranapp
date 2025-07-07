@@ -40,9 +40,9 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/profile/:id',
       builder: (context, state) {
-        final id = int.parse(state.pathParameters['id']!);
+     
         return BlocProvider(
-          create: (context) => sl<ProfileCubit>()..getProfile(id),
+          create: (context) => sl<ProfileCubit>()..getProfile(),
           child: const ProfileScreen(),
         );
       },
