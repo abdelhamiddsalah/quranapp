@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:quranapp/features/auth/profile/presention/views/profile_view.dart';
 import 'package:quranapp/features/home/presentation/view/home.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/favourite_widget.dart';
-import 'package:quranapp/features/home/presentation/view/widgets/quran_search_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -19,8 +18,8 @@ class _MyHomePageState extends State<MyHomePage> {
     ProfileView(),
     FavoriteVerses(),
     BookmarksPage(),
-    QuranSearchWidget(),
-    HomePage()
+    ProfileView(),
+    HomePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -30,10 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget fixedEmoji(String emoji) {
-    return Text(
-      emoji,
-      style: const TextStyle(fontSize: 24),
-    );
+    return Text(emoji, style: const TextStyle(fontSize: 24));
   }
 
   @override
@@ -41,7 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: Directionality(
-        textDirection: TextDirection.rtl, // عشان الأيقونات تبقى من اليمين للشمال
+        textDirection:
+            TextDirection.rtl, // عشان الأيقونات تبقى من اليمين للشمال
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.white,
@@ -57,30 +54,16 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: fixedEmoji('👤'),
               label: 'الملف الشخصي',
             ),
-            BottomNavigationBarItem(
-              icon: fixedEmoji('❤️'),
-              label: 'المفضلة',
-            ),
-            BottomNavigationBarItem(
-              icon: fixedEmoji('🧠'),
-              label: 'الحفظ',
-            ),
-            BottomNavigationBarItem(
-              icon: fixedEmoji('🔍'),
-              label: 'البحث',
-            ),
-            BottomNavigationBarItem(
-              icon: fixedEmoji('🏠'),
-              label: 'الرئيسية',
-            ),
+            BottomNavigationBarItem(icon: fixedEmoji('❤️'), label: 'المفضلة'),
+            BottomNavigationBarItem(icon: fixedEmoji('🧠'), label: 'الحفظ'),
+            BottomNavigationBarItem(icon: fixedEmoji('🔍'), label: 'البحث'),
+            BottomNavigationBarItem(icon: fixedEmoji('🏠'), label: 'الرئيسية'),
           ],
         ),
       ),
     );
   }
 }
-
-
 
 // صفحة المحفوظات
 class BookmarksPage extends StatelessWidget {
@@ -96,11 +79,7 @@ class BookmarksPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.bookmark,
-              size: 100,
-              color: Colors.orange,
-            ),
+            Icon(Icons.bookmark, size: 100, color: Colors.orange),
             SizedBox(height: 20),
             Text(
               'المحفوظات',
@@ -112,7 +91,6 @@ class BookmarksPage extends StatelessWidget {
     );
   }
 }
-
 
 // صفحة الملف الشخصي
 class ProfilePage extends StatelessWidget {
@@ -129,11 +107,7 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                Icons.person,
-                size: 100,
-                color: Colors.purple,
-              ),
+              Icon(Icons.person, size: 100, color: Colors.purple),
               SizedBox(height: 20),
               Text(
                 'الملف الشخصي',
