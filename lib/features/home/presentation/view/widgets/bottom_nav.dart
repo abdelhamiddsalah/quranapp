@@ -3,6 +3,7 @@ import 'package:quranapp/features/home/presentation/view/home.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/favourite_widget.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/profile.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/quran_search_widget.dart';
+import 'package:quranapp/features/saving/presentation/pages/save_surah_view.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -18,7 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> _pages = [
     ProfileScreen(),
     FavoriteVerses(),
-    BookmarksPage(),
+    SaveSurahView(),
     QuranSearchWidget(),
     HomePage()
   ];

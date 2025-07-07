@@ -11,7 +11,7 @@ import 'package:quranapp/features/home/presentation/view/home.dart';
 import 'package:quranapp/features/home/presentation/view/search_view.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/bottom_nav.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/profile.dart';
-import 'package:quranapp/features/home/presentation/view/widgets/quran_search_widget.dart';
+import 'package:quranapp/features/saving/presentation/pages/save_surah_view.dart';
 
 final GoRouter router = GoRouter(
   routes: [
@@ -32,6 +32,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: Routes.bottomnav,
       builder: (context, state) => const MyHomePage(),
+    ),
+    GoRoute(
+      path: Routes.savingSurah, 
+      builder: (context, state) => const SaveSurahView(),
     ),
     GoRoute(
       path: '/profile/:id',
