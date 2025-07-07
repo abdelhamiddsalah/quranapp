@@ -11,6 +11,7 @@ import 'package:quranapp/features/auth/welcome/presention/welcome_view.dart';
 import 'package:quranapp/features/home/presentation/view/home.dart';
 import 'package:quranapp/features/home/presentation/view/search_view.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/bottom_nav.dart';
+import 'package:quranapp/features/home/presentation/view/widgets/profile.dart';
 
 final GoRouter router = GoRouter(
   routes: [
@@ -33,11 +34,14 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const MyHomePage(),
     ),
     GoRoute(
-      path: Routes.profile,
-      builder: (context, state) => BlocProvider(
-        create: (context) => sl<ProfileCubit>()..getProfile(),
-        child: ProfileView(),
-      ),
+      path: '/profile',
+      builder: (context, state) {
+     
+        return BlocProvider(
+          create: (context) => sl<ProfileCubit>()..getProfile(),
+          child: const ProfileScreen(),
+        );
+      },
     ),
   ],
   errorBuilder: (context, state) =>

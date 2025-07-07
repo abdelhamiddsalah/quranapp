@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quranapp/features/auth/profile/presention/views/profile_view.dart';
 import 'package:quranapp/features/home/presentation/view/home.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/favourite_widget.dart';
+import 'package:quranapp/features/home/presentation/view/widgets/quran_search_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -18,8 +19,8 @@ class _MyHomePageState extends State<MyHomePage> {
     ProfileView(),
     FavoriteVerses(),
     BookmarksPage(),
-    ProfileView(),
-    HomePage(),
+    QuranSearchWidget(),
+    HomePage()
   ];
 
   void _onItemTapped(int index) {
