@@ -2,10 +2,8 @@ import 'package:audio_session/audio_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:just_audio_background/just_audio_background.dart';
-
 import 'package:quranapp/core/cache/cache_helper.dart';
 import 'package:quranapp/core/routeing/app_routing.dart';
-
 import 'depency_injection.dart';
 
 
