@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quranapp/colorss.dart';
+import 'package:quranapp/core/cache/cache_helper.dart';
 import 'package:quranapp/core/routeing/routes.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -8,7 +9,8 @@ class WelcomeScreen extends StatefulWidget {
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateMixin {
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with TickerProviderStateMixin {
   PageController _pageController = PageController();
   int _currentPage = 0;
   late AnimationController _animationController;
@@ -39,13 +41,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateM
     {
       'icon': Icons.menu_book,
       'title': 'مرحباً بك في القرآن الكريم',
-      'description': 'اقرأ واستمع لكلام الله الكريم بأجمل الأصوات وأوضح التفاسير',
+      'description':
+          'اقرأ واستمع لكلام الله الكريم بأجمل الأصوات وأوضح التفاسير',
       'color': iconColor,
     },
     {
       'icon': Icons.headphones,
       'title': 'استمع بأجمل الأصوات',
-      'description': 'تمتع بتلاوات مختارة من أشهر القراء حول العالم بجودة عالية',
+      'description':
+          'تمتع بتلاوات مختارة من أشهر القراء حول العالم بجودة عالية',
       'color': Colors.orange,
     },
     {
@@ -69,7 +73,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateM
         curve: Curves.easeInOut,
       );
     } else {
-      GoRouter.of(context).push(Routes.register);
+      if (CacheHelper.sharedPreferences.getString('token') != null) {
+        GoRouter.of(context).go(Routes.register);
+      } else {
+        GoRouter.of(context).go(Routes.register);
+      }
     }
   }
 
@@ -85,10 +93,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateM
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              lightGreen,
-              primaryGreen,
-            ],
+            colors: [lightGreen, primaryGreen],
           ),
         ),
         child: SafeArea(
@@ -204,9 +209,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateM
                           ),
                         ),
                       ),
-                    
+
                     if (_currentPage > 0) SizedBox(width: 16),
-                    
+
                     Expanded(
                       flex: _currentPage == 0 ? 1 : 1,
                       child: ElevatedButton(
@@ -224,7 +229,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateM
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              _currentPage == _pages.length - 1 ? 'ابدأ الآن' : 'التالي',
+                              _currentPage == _pages.length - 1
+                                  ? 'ابدأ الآن'
+                                  : 'التالي',
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -232,10 +239,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateM
                             ),
                             SizedBox(width: 8),
                             Icon(
-                              _currentPage == _pages.length - 1 
-                                  ? Icons.rocket_launch 
-                                  : Icons.arrow_forward_ios, 
-                              size: 16
+                              _currentPage == _pages.length - 1
+                                  ? Icons.rocket_launch
+                                  : Icons.arrow_forward_ios,
+                              size: 16,
                             ),
                           ],
                         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quranapp/features/auth/profile/presention/views/profile_view.dart';
 import 'package:quranapp/features/home/presentation/view/home.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/favourite_widget.dart';
-import 'package:quranapp/features/home/presentation/view/widgets/profile.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/quran_search_widget.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -16,7 +16,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 4;
 
   final List<Widget> _pages = [
-    ProfileScreen(),
+    ProfileView(),
     FavoriteVerses(),
     BookmarksPage(),
     QuranSearchWidget(),
@@ -118,27 +118,29 @@ class BookmarksPage extends StatelessWidget {
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('الملف الشخصي'),
-        backgroundColor: Colors.purple,
-        foregroundColor: Colors.white,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.person,
-              size: 100,
-              color: Colors.purple,
-            ),
-            SizedBox(height: 20),
-            Text(
-              'الملف الشخصي',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('الملف الشخصي'),
+          backgroundColor: Colors.purple,
+          foregroundColor: Colors.white,
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.person,
+                size: 100,
+                color: Colors.purple,
+              ),
+              SizedBox(height: 20),
+              Text(
+                'الملف الشخصي',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
         ),
       ),
     );

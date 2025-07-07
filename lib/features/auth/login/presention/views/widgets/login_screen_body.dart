@@ -26,7 +26,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
           ).showSnackBar(const SnackBar(content: Text('تم التسجيل بنجاح')));
           GoRouter.of(
             context,
-          ).push(Routes.home); // Assuming 'home' is the name of your home route
+          ).push(Routes.bottomnav); // Assuming 'home' is the name of your home route
         } else if (state is LoginErrorState) {
           ScaffoldMessenger.of(
             context,
