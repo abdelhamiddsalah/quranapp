@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quranapp/depency_injection.dart';
+import 'package:quranapp/features/auth/profile/presention/manger/cubit/profile_cubit.dart';
 import 'package:quranapp/features/auth/profile/presention/views/profile_view.dart';
 import 'package:quranapp/features/home/presentation/view/home.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/favourite_widget.dart';
@@ -16,11 +19,11 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 4;
 
   final List<Widget> _pages = [
-    ProfileView(),
+    BlocProvider.value(value: sl<ProfileCubit>()..getProfile(), child: ProfileView()),
     FavoriteVerses(),
     BookmarksPage(),
     QuranSearchWidget(),
-    HomePage()
+    HomePage(),
   ];
 
   void _onItemTapped(int index) {
