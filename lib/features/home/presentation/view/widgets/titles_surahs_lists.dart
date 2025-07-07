@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quranapp/core/routeing/routes.dart';
 import 'package:quranapp/depency_injection.dart';
 import 'package:quranapp/features/home/presentation/manager/surah_cubit/surahs_cubit.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/surah_container_widget.dart';
@@ -57,11 +59,16 @@ class TitlesSurahsLists extends StatelessWidget {
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
                       final surah = state.surahs[index];
-                      return SurahContainerWidget(
-                        surahName: surah.nameArabic,
-                        revelationPlace: surah.revelationPlace,
-                        ayahCount: surah.ayahCount,
-                        surahNumber: surah.orderInMushaf,
+                      return GestureDetector(
+                        onTap: () {
+                          GoRouter.of(context).push(Routes.surahDetails, extra: surah.id);
+                        },
+                        child: SurahContainerWidget(
+                          surahName: surah.nameArabic,
+                          revelationPlace: surah.revelationPlace,
+                          ayahCount: surah.ayahCount,
+                          surahNumber: surah.orderInMushaf,
+                        ),
                       );
                     },
                   ),

@@ -12,6 +12,7 @@ import 'package:quranapp/features/auth/signup/data/repo/signup_repo_impli.dart';
 import 'package:quranapp/features/auth/signup/presention/manger/cubit/signup_cubit.dart';
 import 'package:quranapp/features/home/data/repo/surah_impl.dart';
 import 'package:quranapp/features/home/presentation/manager/cubit/search_by_aya_cubit.dart';
+import 'package:quranapp/features/home/presentation/manager/cubit_details/cubit/surah_details_cubit.dart';
 import 'package:quranapp/features/home/presentation/manager/surah_cubit/surahs_cubit.dart';
 
 final sl = GetIt.instance;
@@ -19,10 +20,6 @@ final sl = GetIt.instance;
 void setup() {
   // Dependencies
   sl.registerLazySingleton<DioConsumer>(() => DioConsumer(dio: Dio()));
-
-  //
-
-  // Repositry
 
   sl.registerLazySingleton(() => SurahImpl(sl()));
   sl.registerLazySingleton<SignupRepo>(
@@ -40,4 +37,6 @@ void setup() {
   sl.registerFactory(() => SearchByAyaCubit(sl()));
   sl.registerFactory(() => SurahsCubit(sl()));
   sl.registerFactory(() => ProfileCubit(sl()));
+
+  sl.registerFactory(() => SurahDetailsCubit(sl()));
 }

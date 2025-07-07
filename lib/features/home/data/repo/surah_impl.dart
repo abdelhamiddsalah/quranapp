@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:quranapp/core/api/dio_consumer.dart';
 import 'package:quranapp/core/api/end_points.dart';
+import 'package:quranapp/features/home/data/models/aya_model.dart';
 import 'package:quranapp/features/home/data/models/search_model.dart';
 import 'package:quranapp/features/home/data/models/surah_model.dart';
 
@@ -45,4 +46,24 @@ class SurahImpl {
   });
 }
 
+ Future<Either<String, List<AyahModel>>> getSurahDetails(String surahId) async {
+  final result = await dioConsumer.get(path: EndPoints.surahDetails(surahId));
+
+  return result.fold(
+    (l) => Left(l),
+    (response) {
+      try {
+        final data = response.data['ayat'] as List;
+        final ayat = data.map((e) => AyahModel.fromJson(e)).toList();
+        return Right(ayat);
+      } catch (e) {
+        return Left('خطأ في تحويل البيانات: ${e.toString()}');
+      }
+    },
+  );
 }
+
+
+}
+
+   

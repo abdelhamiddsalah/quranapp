@@ -8,4 +8,5 @@ class Routes {
   static const String bottomnav = '/bottomnav';
   static const String profile = '/profile';
   static const String savingSurah = '/saving';
+  static const String surahDetails = '/surahDetails';
 }
