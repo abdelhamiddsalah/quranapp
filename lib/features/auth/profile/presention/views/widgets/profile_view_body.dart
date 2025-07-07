@@ -15,57 +15,51 @@ class ProfileViewBody extends StatelessWidget {
         BlocBuilder<ProfileCubit, ProfileState>(
           builder: (context, state) {
             if (state is ProfileSuccessState) {
-  return Container(
-    width: double.infinity,
-    padding: const EdgeInsets.all(20),
-    decoration: const BoxDecoration(color: primaryGreen),
-    child: Column(
-      children: [
-        Container(
-          width: 80,
-          height: 80,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-          ),
-          child: Center(
-            child: Text('👤', style: TextStyle(fontSize: 30)),
-          ),
-        ),
-        const SizedBox(height: 15),
-         Text(
-          state.usermodel.username  ,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const Text(
-          'مستخدم منذ 6 أشهر',
-          style: TextStyle(color: Colors.white70, fontSize: 16),
-        ),
-      ],
-    ),
-  );
-}else if (state is ProfileErrorState) {
+              return Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(20),
+                decoration: const BoxDecoration(color: primaryGreen),
+                child: Column(
+                  children: [
+                    Container(
+                      width: 80,
+                      height: 80,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Text('👤', style: TextStyle(fontSize: 30)),
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    Text(
+                      state.usermodel.username,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                 
+                  ],
+                ),
+              );
+            } else if (state is ProfileErrorState) {
               return Center(
                 child: Text(
                   state.errMessage,
                   style: const TextStyle(color: Colors.red, fontSize: 16),
                 ),
               );
-            }else  {
+            } else {
               return Container(
-                    width: 80,
-          height: 80,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-          ),
+                width: double.infinity,
+                height: 170,
+                padding: const EdgeInsets.all(20),
+                decoration: const BoxDecoration(color: primaryGreen),
               );
-            } 
-           
+            }
           },
         ),
 

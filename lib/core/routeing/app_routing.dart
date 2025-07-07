@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quranapp/core/routeing/routes.dart';
 import 'package:quranapp/features/auth/login/presention/views/login_screen.dart';
-
 import 'package:quranapp/features/auth/signup/presention/views/signup.dart';
 import 'package:quranapp/features/auth/welcome/presention/welcome_view.dart';
 import 'package:quranapp/features/home/presentation/view/home.dart';

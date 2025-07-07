@@ -74,7 +74,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       );
     } else {
       if (CacheHelper.sharedPreferences.getString('token') != null) {
-        GoRouter.of(context).go(Routes.register);
+        GoRouter.of(context).go(Routes.bottomnav);
       } else {
         GoRouter.of(context).go(Routes.register);
       }
