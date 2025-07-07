@@ -4,9 +4,19 @@ import 'package:quranapp/depency_injection.dart';
 import 'package:quranapp/features/auth/profile/presention/manger/cubit/profile_cubit.dart';
 import 'package:quranapp/features/auth/profile/presention/views/widgets/profile_view_body.dart';
 
-class ProfileView extends StatelessWidget {
+class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
 
+  @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ProfileCubit>().getProfile();
+  }
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(

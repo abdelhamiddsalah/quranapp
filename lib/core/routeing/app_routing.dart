@@ -10,8 +10,9 @@ import 'package:quranapp/features/auth/welcome/presention/welcome_view.dart';
 import 'package:quranapp/features/home/presentation/view/home.dart';
 import 'package:quranapp/features/home/presentation/view/search_view.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/bottom_nav.dart';
-
 import 'package:quranapp/features/saving/presentation/pages/save_surah_view.dart';
+import 'package:quranapp/features/home/presentation/view/widgets/profile.dart';
+
 
 final GoRouter router = GoRouter(
   routes: [
@@ -34,11 +35,23 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const MyHomePage(),
     ),
     GoRoute(
+
       path: Routes.savingSurah, 
       builder: (context, state) => const SaveSurahView(),
     ),
+  GoRoute(
+       path: '/profile',
+      builder: (context, state) {
+     
+        return BlocProvider(
+          create: (context) => sl<ProfileCubit>()..getProfile(),
+          child: const ProfileScreen(),
+        );
+      },
+    ),
   
 
+   
   ],
   errorBuilder: (context, state) =>
       const Scaffold(body: Center(child: Text('Page not found'))),
