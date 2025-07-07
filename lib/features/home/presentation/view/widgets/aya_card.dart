@@ -115,9 +115,8 @@ class _QuranCardState extends State<QuranCard> {
                   label: _isPlaying ? 'إيقاف' : 'تشغيل',
                   color: primaryGreen,
                   color2: Colors.white,
-                  onPressed: () async {
-                await _togglePlayPause();
-                  },
+                  onPressed:()=>  _togglePlayPause()
+                  ,
                 ),
               ],
             ),

@@ -10,7 +10,7 @@ class ProfileRepoImpli implements ProfileRepo {
 
   ProfileRepoImpli({required this.dioConsumer});
   @override
-  Future<Either<Failure, UserModel>> getProfile(  ) async {
+  Future<Either<Failure, UserModel>> getProfile( ) async {
     final result = await dioConsumer.get(path: EndPoints.profile);
     return result.fold(
       (l) => Left(Failure(errMessage: 'خطأ في الاتصال: $l')),
