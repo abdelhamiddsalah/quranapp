@@ -11,7 +11,6 @@ import 'package:quranapp/features/home/presentation/view/home.dart';
 import 'package:quranapp/features/home/presentation/view/search_view.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/bottom_nav.dart';
 import 'package:quranapp/features/home/presentation/view/widgets/profile.dart';
-import 'package:quranapp/features/home/presentation/view/widgets/quran_search_widget.dart';
 
 final GoRouter router = GoRouter(
   routes: [
@@ -34,11 +33,11 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const MyHomePage(),
     ),
     GoRoute(
-      path: '/profile/:id',
+      path: '/profile',
       builder: (context, state) {
-        final id = int.parse(state.pathParameters['id']!);
+     
         return BlocProvider(
-          create: (context) => sl<ProfileCubit>()..getProfile(id),
+          create: (context) => sl<ProfileCubit>()..getProfile(),
           child: const ProfileScreen(),
         );
       },
