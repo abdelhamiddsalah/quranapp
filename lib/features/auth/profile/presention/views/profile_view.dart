@@ -15,7 +15,7 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   void initState() {
     super.initState();
-     context.read<ProfileCubit>().getProfile();
+   
   }
   @override
   Widget build(BuildContext context) {
