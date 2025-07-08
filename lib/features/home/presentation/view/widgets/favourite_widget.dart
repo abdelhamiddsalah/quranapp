@@ -59,26 +59,32 @@ class FavoriteVerses extends StatelessWidget {
                       BlocBuilder<FavoriteCubit, FavoriteState>(
                         builder: (context, state) {
                           if (state is FavoriteLoaded) {
-  return SizedBox(
-    height: MediaQuery.of(context).size.height * 0.6,
-    child: ListView.builder(
-      itemCount: state.favorites.length,
-      itemBuilder: (BuildContext context, int index) {
-        return _verseItem(
-          title: state.favorites[index].aya.ayaText,
-          subtitle: "سورة ${state.favorites[index].surah.name} - آية ${state.favorites[index].aya.ayaNumber}",
-        );
-      },
-    ),
-  );
-}else if (state is FavoriteLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is FavoriteError) {
-            return Center(child: Text(state.message));
-                        }
-                          return const Center(child: Text('لا توجد آيات مفضلة بعد.'));
-                        },    
-                   ) ],
+                            return SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.6,
+                              child: ListView.builder(
+                                itemCount: state.favorites.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return _verseItem(
+                                    title: state.favorites[index].aya.ayaText,
+                                    subtitle:
+                                        "سورة ${state.favorites[index].surah.name} - آية ${state.favorites[index].aya.ayaNumber}",
+                                  );
+                                },
+                              ),
+                            );
+                          } else if (state is FavoriteLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          } else if (state is FavoriteError) {
+                            return Center(child: Text(state.message));
+                          }
+                          return const Center(
+                            child: Text('لا توجد آيات مفضلة بعد.'),
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ),
               ),
