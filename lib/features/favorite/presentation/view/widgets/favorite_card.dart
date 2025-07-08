@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:quranapp/colorss.dart';
-import 'package:quranapp/features/home/data/models/aya_model.dart';
+import 'package:quranapp/features/favorite/data/models/favorite_model.dart';
 
-class QuranCard extends StatefulWidget {
-  final AyahModel ayah;
+class FavoriteCard extends StatefulWidget {
+  final QuranVerseModel ayah;
 
-  const QuranCard({super.key, required this.ayah});
+  const FavoriteCard({super.key, required this.ayah});
 
   @override
-  State<QuranCard> createState() => _QuranCardState();
+  State<FavoriteCard> createState() => _FavoriteCardState();
 }
 
-class _QuranCardState extends State<QuranCard> {
+class _FavoriteCardState extends State<FavoriteCard> {
   late AudioPlayer _audioPlayer;
   bool _isPlaying = false;
 
@@ -50,8 +50,8 @@ class _QuranCardState extends State<QuranCard> {
         setState(() {
           _isPlaying = true; // تظهر الأيقونة مباشرة
         });
-        await _audioPlayer.setUrl(widget.ayah.audioUrl);
-        print("🎧 Playing audio from: ${widget.ayah.audioUrl}");
+        await _audioPlayer.setUrl(widget.ayah.aya.audioUrl!);
+        
         await _audioPlayer.play();
       }
     } catch (e) {
@@ -88,7 +88,7 @@ class _QuranCardState extends State<QuranCard> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              '﴿ ${widget.ayah.ayaText} ﴾',
+              '﴿ ${widget.ayah.aya.ayaText} ﴾',
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -100,15 +100,7 @@ class _QuranCardState extends State<QuranCard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildIconButton(
-                  icon: Icons.favorite,
-                  label: 'إضافة للمفضلة',
-                  color: primaryGreen,
-                  color2: Colors.red,
-                  onPressed: () {
-                    // TODO: إضافة للمفضلة
-                  },
-                ),
+           
                 const SizedBox(width: 8),
                 _buildIconButton(
                   icon: _isPlaying ? Icons.stop : Icons.play_circle_fill,
@@ -127,7 +119,7 @@ class _QuranCardState extends State<QuranCard> {
                 style: const TextStyle(fontWeight: FontWeight.bold),
                 children: [
                   TextSpan(
-                    text: widget.ayah.ayaTafsir,
+                    text: widget.ayah.aya.ayaTafsir,
                     style: const TextStyle(fontWeight: FontWeight.normal),
                   ),
                 ],

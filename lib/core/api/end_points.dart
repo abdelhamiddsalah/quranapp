@@ -6,4 +6,6 @@ class EndPoints {
   static String search(String keyword) => "api/search?keyword=$keyword";
   static String profile ="profile";
   static String surahDetails(String surahId) => "surahs/$surahId/ayata";
+  static String addFavorite(int id) => "favourites/$id";
+  static String getFavorites= "favourites";
 }

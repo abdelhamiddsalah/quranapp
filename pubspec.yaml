@@ -70,7 +70,6 @@ dependencies:
   flutter_localization: ^0.3.2
   google_fonts: ^6.2.1
   just_audio: ^0.10.4
-  just_audio_background: ^0.0.1-beta.17
   audio_session: ^0.2.2
 
 dev_dependencies:

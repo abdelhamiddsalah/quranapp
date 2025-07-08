@@ -10,6 +10,9 @@ import 'package:quranapp/features/auth/profile/presention/manger/cubit/profile_c
 import 'package:quranapp/features/auth/signup/data/repo/signup_repo.dart';
 import 'package:quranapp/features/auth/signup/data/repo/signup_repo_impli.dart';
 import 'package:quranapp/features/auth/signup/presention/manger/cubit/signup_cubit.dart';
+import 'package:quranapp/features/favorite/data/repo/favorite_repo.dart';
+import 'package:quranapp/features/favorite/data/repo/favorite_repo_impli.dart';
+import 'package:quranapp/features/favorite/presentation/cubit/favorite_cubit.dart';
 import 'package:quranapp/features/home/data/repo/surah_impl.dart';
 import 'package:quranapp/features/home/presentation/manager/cubit/search_by_aya_cubit.dart';
 import 'package:quranapp/features/home/presentation/manager/cubit_details/cubit/surah_details_cubit.dart';
@@ -29,6 +32,9 @@ void setup() {
   sl.registerLazySingleton<ProfileRepo>(
     () => ProfileRepoImpli(dioConsumer: sl()),
   );
+ sl.registerLazySingleton<FavoriteRepo>(
+    () => FavoriteRepoImpli(dioConsumer: sl()),
+  );
 
   // Cubit
 
@@ -37,6 +43,7 @@ void setup() {
   sl.registerFactory(() => SearchByAyaCubit(sl()));
   sl.registerFactory(() => SurahsCubit(sl()));
   sl.registerFactory(() => ProfileCubit(sl()));
+  sl.registerFactory(() => FavoriteCubit(favoriteRepo :sl()));
 
   sl.registerFactory(() => SurahDetailsCubit(sl()));
 }
