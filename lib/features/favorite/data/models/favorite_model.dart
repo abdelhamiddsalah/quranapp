@@ -1,7 +1,7 @@
 class SurahModel {
   final int id;
   final String arabicName;
-  final String? name; // لو فيه ترجمة للاسم
+  final String? name;
   final int number;
   final int versesCount;
   final String revelationPlace;
@@ -41,13 +41,15 @@ class SurahModel {
 class AyaModel {
   final int ayaNumber;
   final String ayaText;
-  final String? ayaTextStripped; // لو عايز تستخدمه في البحث مثلًا
+  final String? audioUrl;
+  final String? ayaTafsir;
   final SurahModel surah;
 
   AyaModel({
     required this.ayaNumber,
     required this.ayaText,
-    this.ayaTextStripped,
+    this.audioUrl,
+    this.ayaTafsir,
     required this.surah,
   });
 
@@ -55,7 +57,8 @@ class AyaModel {
     return AyaModel(
       ayaNumber: json['ayaNumber'],
       ayaText: json['ayaText'],
-      ayaTextStripped: json['ayaTextStripped'],
+      audioUrl: json['audioUrl'],
+      ayaTafsir: json['ayaTafsir'],
       surah: SurahModel.fromJson(json['surah']),
     );
   }
@@ -64,25 +67,26 @@ class AyaModel {
     return {
       'ayaNumber': ayaNumber,
       'ayaText': ayaText,
-      'ayaTextStripped': ayaTextStripped,
+      'audioUrl': audioUrl,
+      'ayaTafsir': ayaTafsir,
       'surah': surah.toJson(),
     };
   }
 }
 
-class QuranVerse {
+class QuranVerseModel {
   final int id;
   final SurahModel surah;
   final AyaModel aya;
 
-  QuranVerse({
+  QuranVerseModel({
     required this.id,
     required this.surah,
     required this.aya,
   });
 
-  factory QuranVerse.fromJson(Map<String, dynamic> json) {
-    return QuranVerse(
+  factory QuranVerseModel.fromJson(Map<String, dynamic> json) {
+    return QuranVerseModel(
       id: json['id'],
       surah: SurahModel.fromJson(json['surah']),
       aya: AyaModel.fromJson(json['aya']),
