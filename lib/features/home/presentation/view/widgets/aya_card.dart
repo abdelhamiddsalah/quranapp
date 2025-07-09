@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:quranapp/colorss.dart';
+import 'package:quranapp/features/favorite/presentation/cubit/favorite_cubit.dart';
 import 'package:quranapp/features/home/data/models/aya_model.dart';
+import 'package:quranapp/features/home/data/models/surah_model.dart';
 
 class QuranCard extends StatefulWidget {
   final AyahModel ayah;
+  final SurahModel surah;
 
-  const QuranCard({super.key, required this.ayah});
+  const QuranCard({super.key, required this.ayah, required this.surah});
 
   @override
   State<QuranCard> createState() => _QuranCardState();
@@ -15,22 +19,29 @@ class QuranCard extends StatefulWidget {
 class _QuranCardState extends State<QuranCard> {
   late AudioPlayer _audioPlayer;
   bool _isPlaying = false;
+  bool _isFavorite = false;
 
   @override
   void initState() {
     super.initState();
     _audioPlayer = AudioPlayer();
 
-    // عند انتهاء الصوت نرجع زر التشغيل
     _audioPlayer.playerStateStream.listen((state) {
-      if (state.processingState == ProcessingState.completed) {
-        if (mounted) {
-          setState(() {
-            _isPlaying = false;
-          });
-        }
+      if (state.processingState == ProcessingState.completed && mounted) {
+        setState(() => _isPlaying = false);
       }
     });
+
+    _checkIfFavorite();
+  }
+
+  Future<void> _checkIfFavorite() async {
+    final isFav = await context
+        .read<FavoriteCubit>()
+        .checkIfFavorite(widget.surah.id, widget.ayah.ayaNumber);
+    if (mounted) {
+      setState(() => _isFavorite = isFav);
+    }
   }
 
   @override
@@ -43,28 +54,30 @@ class _QuranCardState extends State<QuranCard> {
     try {
       if (_isPlaying) {
         await _audioPlayer.pause();
-        setState(() {
-          _isPlaying = false;
-        });
+        setState(() => _isPlaying = false);
       } else {
-        setState(() {
-          _isPlaying = true; // تظهر الأيقونة مباشرة
-        });
+        setState(() => _isPlaying = true);
         await _audioPlayer.setUrl(widget.ayah.audioUrl);
-        print("🎧 Playing audio from: ${widget.ayah.audioUrl}");
         await _audioPlayer.play();
       }
     } catch (e) {
-      debugPrint("❌ Error playing audio: $e");
       if (mounted) {
-        setState(() {
-          _isPlaying = false;
-        });
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(const SnackBar(content: Text("فشل في تشغيل الصوت")));
+        setState(() => _isPlaying = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("فشل في تشغيل الصوت")),
+        );
       }
     }
+  }
+
+  Future<void> _handleAddFavorite() async {
+    await context
+        .read<FavoriteCubit>()
+        .addFavorite(widget.surah.id, widget.ayah.ayaNumber);
+    setState(() => _isFavorite = true);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('تمت إضافة الآية إلى المفضلة')),
+    );
   }
 
   @override
@@ -101,13 +114,11 @@ class _QuranCardState extends State<QuranCard> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _buildIconButton(
-                  icon: Icons.favorite,
-                  label: 'إضافة للمفضلة',
-                  color: primaryGreen,
-                  color2: Colors.red,
-                  onPressed: () {
-                    // TODO: إضافة للمفضلة
-                  },
+                  icon: _isFavorite ? Icons.favorite : Icons.favorite_border,
+                  label: _isFavorite ? 'مضافة' : 'إضافة للمفضلة',
+                  color: _isFavorite ? Colors.red : primaryGreen,
+                  color2: Colors.white,
+                  onPressed: _isFavorite ? null : _handleAddFavorite,
                 ),
                 const SizedBox(width: 8),
                 _buildIconButton(
@@ -115,8 +126,7 @@ class _QuranCardState extends State<QuranCard> {
                   label: _isPlaying ? 'إيقاف' : 'تشغيل',
                   color: primaryGreen,
                   color2: Colors.white,
-                  onPressed:()=>  _togglePlayPause()
-                  ,
+                  onPressed: _togglePlayPause,
                 ),
               ],
             ),
@@ -145,7 +155,7 @@ class _QuranCardState extends State<QuranCard> {
     required String label,
     required Color color,
     required Color color2,
-    required VoidCallback onPressed,
+    required VoidCallback? onPressed,
   }) {
     return ElevatedButton.icon(
       onPressed: onPressed,

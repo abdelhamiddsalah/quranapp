@@ -6,6 +6,8 @@ import 'package:quranapp/depency_injection.dart';
 import 'package:quranapp/features/auth/login/presention/views/login_screen.dart';
 import 'package:quranapp/features/auth/signup/presention/views/signup.dart';
 import 'package:quranapp/features/auth/welcome/presention/welcome_view.dart';
+import 'package:quranapp/features/favorite/presentation/cubit/favorite_cubit.dart';
+import 'package:quranapp/features/home/presentation/manager/cubit/search_by_aya_cubit.dart';
 import 'package:quranapp/features/home/presentation/manager/cubit_details/cubit/surah_details_cubit.dart';
 import 'package:quranapp/features/home/presentation/view/home.dart';
 import 'package:quranapp/features/home/presentation/view/search_view.dart';
@@ -26,24 +28,33 @@ final GoRouter router = GoRouter(
     GoRoute(path: Routes.home, builder: (context, state) => const HomePage()),
     GoRoute(
       path: Routes.search,
-      builder: (context, state) => const SearchView(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => sl<SearchByAyaCubit>(),
+        child: const SearchView(),
+      ),
     ),
     GoRoute(
       path: Routes.bottomnav,
       builder: (context, state) => const MyHomePage(),
     ),
     GoRoute(
-  path: Routes.surahDetails,
-  builder: (context, state) => BlocProvider(
-    create: (context) => sl<SurahDetailsCubit>()..getSurahDetails((state.extra as int).toString()),
-    child: const SurahDetails(
-      title: 'الفاتحة',
-      translation: 'The Opening',
-      audioUrl: '...',
+      path: Routes.surahDetails,
+      builder: (context, state) => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) =>
+                sl<SurahDetailsCubit>()
+                  ..getSurahDetails((state.extra as int).toString()),
+          ),
+          BlocProvider(create: (context) => sl<FavoriteCubit>()),
+        ],
+        child: const SurahDetails(
+          title: 'الفاتحة',
+          translation: 'The Opening',
+          audioUrl: '...',
+        ),
+      ),
     ),
-  ),
-),
-
   ],
   errorBuilder: (context, state) =>
       const Scaffold(body: Center(child: Text('Page not found'))),
