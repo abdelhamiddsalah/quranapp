@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
-// ignore: depend_on_referenced_packages
-import 'package:meta/meta.dart';
+
 import 'package:quranapp/features/home/data/repo/surah_impl.dart';
 import 'package:quranapp/features/home/data/models/surah_model.dart';
 

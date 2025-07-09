@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:quranapp/core/api/dio_consumer.dart';
 import 'package:quranapp/core/api/end_points.dart';
+import 'package:quranapp/features/home/data/models/daily_aya_model.dart';
 import 'package:quranapp/features/home/data/models/search_model.dart';
 import 'package:quranapp/features/home/data/models/surah_model.dart';
 import 'package:quranapp/features/home/data/models/surah_response_model.dart';
@@ -62,6 +63,21 @@ class SurahImpl {
   );
 }
 
+Future<Either<String, DailyAya>> getDailyAya() async {
+  final result = await dioConsumer.get(path: EndPoints.dailyAya);
+
+  return result.fold(
+    (l) => Left(l),
+    (response) {
+      try {
+        final model = DailyAya.fromJson(response.data);
+        return Right(model);
+      } catch (e) {
+        return Left('خطأ في تحويل البيانات: ${e.toString()}');
+      }
+    },
+  );
+}
 
 
 }

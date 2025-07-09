@@ -9,24 +9,26 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-     backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.only(top: 40, left: 16, right: 16),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-            HomeAppBar(title: 'الرئيسية'),
-              SizedBox(height: 16),
-              IslamicVerseContainer(title: 'ومن يتق الله يجعل له مخرجا', detailtitle: 'سورة الطلاق - آية 2'),
-              SizedBox(height: 16),
-              QuickActionsContainer(),
-              SizedBox(height: 16),
-              TitlesSurahsLists(),
-            ],
+    return SafeArea(
+      child: Scaffold(
+       backgroundColor: Colors.white,
+        body: Padding(
+          padding: const EdgeInsets.only(top: 40, left: 16, right: 16),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+              HomeAppBar(title: 'الرئيسية'),
+                SizedBox(height: 16),
+                IslamicVerseContainer(),
+                SizedBox(height: 16),
+                QuickActionsContainer(),
+                SizedBox(height: 16),
+                TitlesSurahsLists(),
+              ],
+            ),
           ),
-        ),
-      )
+        )
+      ),
     );
   }
 }

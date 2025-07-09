@@ -1,6 +1,5 @@
 part of 'surahs_cubit.dart';
 
-@immutable
 sealed class SurahsState {}
 
 final class SurahsInitial extends SurahsState {}

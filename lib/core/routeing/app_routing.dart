@@ -7,7 +7,7 @@ import 'package:quranapp/features/auth/login/presention/views/login_screen.dart'
 import 'package:quranapp/features/auth/signup/presention/views/signup.dart';
 import 'package:quranapp/features/auth/welcome/presention/welcome_view.dart';
 import 'package:quranapp/features/favorite/presentation/cubit/favorite_cubit.dart';
-import 'package:quranapp/features/home/presentation/manager/cubit/search_by_aya_cubit.dart';
+import 'package:quranapp/features/home/presentation/manager/search_cubit/search_by_aya_cubit.dart';
 import 'package:quranapp/features/home/presentation/manager/cubit_details/cubit/surah_details_cubit.dart';
 import 'package:quranapp/features/home/presentation/view/home.dart';
 import 'package:quranapp/features/home/presentation/view/search_view.dart';

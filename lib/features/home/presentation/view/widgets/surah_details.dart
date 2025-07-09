@@ -39,8 +39,7 @@ class SurahDetails extends StatelessWidget {
                     HomeAppBar(title: surah.nameArabic),
                     const SizedBox(height: 16.0),
                     IslamicVerseContainer(
-                      title: surah.nameArabic,
-                      detailtitle: '${surah.nameArabic} - آية 1',
+                    
                     ),
                     const SizedBox(height: 16.0),
                     ListView.builder(

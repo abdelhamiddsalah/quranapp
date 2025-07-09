@@ -19,5 +19,5 @@ class EndPoints {
 
  
   static String getFavorites= "api/favourites";
-
+  static String dailyAya= "/dailyaya";
 }

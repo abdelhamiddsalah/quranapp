@@ -4,6 +4,7 @@ import 'package:quranapp/depency_injection.dart';
 import 'package:quranapp/features/auth/profile/presention/manger/cubit/profile_cubit.dart';
 import 'package:quranapp/features/auth/profile/presention/views/profile_view.dart';
 import 'package:quranapp/features/favorite/presentation/view/favorite_view.dart';
+import 'package:quranapp/features/home/presentation/manager/cubit/daily_aya_cubit.dart';
 import 'package:quranapp/features/home/presentation/view/home.dart';
 import 'package:quranapp/features/home/presentation/view/search_view.dart';
 
@@ -19,11 +20,15 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 3;
 
   final List<Widget> _pages = [
-    BlocProvider.value(value: sl<ProfileCubit>()..getProfile(), child: ProfileView()),
-    FavoriteView(),  
-      SearchView(),
-
-    HomePage(),
+    BlocProvider.value(
+      value: sl<ProfileCubit>()..getProfile(),
+      child: ProfileView(),
+    ),
+    FavoriteView(),
+    SearchView(),
+    BlocProvider.value(
+        value:  sl<DailyAyaCubit>()..getDailyAya(),
+       child: HomePage()),
   ];
 
   void _onItemTapped(int index) {

@@ -14,7 +14,8 @@ import 'package:quranapp/features/favorite/data/repo/favorite_repo.dart';
 import 'package:quranapp/features/favorite/data/repo/favorite_repo_impli.dart';
 import 'package:quranapp/features/favorite/presentation/cubit/favorite_cubit.dart';
 import 'package:quranapp/features/home/data/repo/surah_impl.dart';
-import 'package:quranapp/features/home/presentation/manager/cubit/search_by_aya_cubit.dart';
+import 'package:quranapp/features/home/presentation/manager/cubit/daily_aya_cubit.dart';
+import 'package:quranapp/features/home/presentation/manager/search_cubit/search_by_aya_cubit.dart';
 import 'package:quranapp/features/home/presentation/manager/cubit_details/cubit/surah_details_cubit.dart';
 import 'package:quranapp/features/home/presentation/manager/surah_cubit/surahs_cubit.dart';
 
@@ -44,6 +45,7 @@ void setup() {
   sl.registerFactory(() => SurahsCubit(sl()));
   sl.registerFactory(() => ProfileCubit(sl()));
   sl.registerFactory(() => FavoriteCubit(favoriteRepo :sl()));
+  sl.registerFactory(() => DailyAyaCubit(sl()));
 
   sl.registerFactory(() => SurahDetailsCubit(sl()));
 }
