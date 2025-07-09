@@ -9,6 +9,7 @@ class FavoriteRepoImpli implements FavoriteRepo {
   final DioConsumer dioConsumer;
   FavoriteRepoImpli({required this.dioConsumer});
 
+
   @override
   Future<Either<Failure, QuranVerseModel>> addFavorite(int surahId, int ayaNumber) async {
     final result = await dioConsumer.post(
@@ -46,5 +47,7 @@ Future<Either<Failure, bool>> isFavorite(int surahId, int ayaNumber) async {
     (r) => Right(r.data is bool ? r.data : false),
   );
 }
+
+ 
 
 }

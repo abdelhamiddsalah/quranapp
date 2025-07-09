@@ -9,11 +9,15 @@ class EndPoints {
 
   static String surahDetails(String surahId) => "surahs/$surahId/ayata";
 
+
   static String addFavorite(int surahId, int ayaNumber) =>
       "api/favourites/$surahId/$ayaNumber";
 
   static String isFavorite(int surahId, int ayaNumber) =>
       "api/favourites/is-favourite/$surahId/$ayaNumber";
 
-  static const String getFavorites = "api/favourites";
+
+ 
+  static String getFavorites= "api/favourites";
+
 }

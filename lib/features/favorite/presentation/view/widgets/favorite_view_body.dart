@@ -22,9 +22,7 @@ class FavoriteViewBody extends StatelessWidget {
               child: Column(
                 children: [
                   const HomeAppBar(title: ' المفضلة'),
-                
-                  const SizedBox(height: 16.0),
-                  ListView.builder(
+                    ListView.builder(
                     itemBuilder: (context, index) {
                       final ayah = state.favorites[index];
                       return FavoriteCard(ayah: ayah);
