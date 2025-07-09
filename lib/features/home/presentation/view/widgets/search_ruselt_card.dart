@@ -18,6 +18,7 @@ class SearchRuseltCard extends StatelessWidget {
         border: Border.all(color: Colors.grey.shade200),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: Colors.grey.withOpacity(0.1),
             blurRadius: 4,
             offset: const Offset(0, 2),
@@ -37,6 +38,7 @@ class SearchRuseltCard extends StatelessWidget {
                   vertical: 6,
                 ),
                 decoration: BoxDecoration(
+                  // ignore: deprecated_member_use
                   color: primaryGreen.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -55,6 +57,7 @@ class SearchRuseltCard extends StatelessWidget {
                   vertical: 6,
                 ),
                 decoration: BoxDecoration(
+                  // ignore: deprecated_member_use
                   color: Colors.blue.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(20),
                 ),

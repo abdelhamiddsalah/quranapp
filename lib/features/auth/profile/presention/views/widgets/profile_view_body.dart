@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:quranapp/colorss.dart';
+import 'package:quranapp/core/cache/cache_helper.dart';
+import 'package:quranapp/core/routeing/routes.dart';
 import 'package:quranapp/features/auth/profile/presention/manger/cubit/profile_cubit.dart';
 import 'package:quranapp/features/auth/profile/presention/views/widgets/Build_menu_item.dart';
 
@@ -41,7 +44,6 @@ class ProfileViewBody extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                 
                   ],
                 ),
               );
@@ -93,6 +95,17 @@ class ProfileViewBody extends StatelessWidget {
                 title: 'المساعدة',
                 color: Colors.red,
                 onTap: () {},
+              ),
+              BuildMenuItem(
+                icon: Icons.logout,
+                
+                title: 'تسجيل الخروج',
+                color: Colors.red,
+                onTap: () {
+                  GoRouter.of(context).go(Routes.splash);
+                  CacheHelper.sharedPreferences.remove('token');
+                
+                },
               ),
             ],
           ),

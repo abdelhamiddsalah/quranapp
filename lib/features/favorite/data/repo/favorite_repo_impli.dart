@@ -21,6 +21,7 @@ class FavoriteRepoImpli implements FavoriteRepo {
     );
   }
 
+  @override
   Future<Either<Failure, List<QuranVerseModel>>> getFavorites() async {
   final result = await dioConsumer.get(path: EndPoints.getFavorites);
   return result.fold(

@@ -32,7 +32,7 @@ class _SignupScreenBodyState extends State<SignupScreenBody> {
           );
                GoRouter.of(
             context,
-          ).push(Routes.home); // Assuming 'home' is the name of your home route
+          ).push(Routes.bottomnav); // Assuming 'home' is the name of your home route
         }else if (state is SignupErrorState) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

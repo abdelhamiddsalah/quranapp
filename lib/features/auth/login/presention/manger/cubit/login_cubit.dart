@@ -22,11 +22,11 @@ class LoginCubit extends Cubit<LoginState> {
     final result = await signupRepoImpli.login(loginRequestModel);
 
     result.fold((l) => emit(LoginErrorState(errMessage: l.errMessage)), (r) {
-      if (r.token != null ) {
-        emit(LoginSuccessState(signupModel: r));
+      if (r.message=="Invalid email or password" ) {
+             emit(LoginErrorState(errMessage: r.message));
+      } else {emit(LoginSuccessState(signupModel: r));
         CacheHelper().saveData(key: 'token', value: r.token);
-      } else {
-        emit(LoginErrorState(errMessage: r.message));
+   
       }
     });
   }

@@ -20,8 +20,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> _pages = [
     BlocProvider.value(value: sl<ProfileCubit>()..getProfile(), child: ProfileView()),
-    SearchView(),
-    FavoriteView(),
+    FavoriteView(),  
+      SearchView(),
+
     HomePage(),
   ];
 

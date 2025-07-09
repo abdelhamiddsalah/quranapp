@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:quranapp/core/cache/cache_helper.dart';
 import 'package:quranapp/features/auth/signup/data/models/signup_model.dart';
 import 'package:quranapp/features/auth/signup/data/models/signup_request_model.dart';
 import 'package:quranapp/features/auth/signup/data/repo/signup_repo.dart';
@@ -21,10 +22,12 @@ class SignupCubit extends Cubit<SignupState> {
     final result = await signupRepoImpli.signup(signupRequestModel);
 
     result.fold((l) => emit(SignupErrorState(errMessage: l.errMessage)), (r) {
-      if (r.token != null ) {
-        emit(SignupSuccessState(signupModel: r));
-      } else {
-        emit(SignupErrorState(errMessage: r.message));
+      if (r.message == 'Invalid email or password' ) {
+                emit(SignupErrorState(errMessage: r.message));
+
+      } else {emit(SignupSuccessState(signupModel: r));
+              CacheHelper().saveData(key: 'token', value: r.token);
+
       }
     });
   }

@@ -5,7 +5,7 @@ import 'package:quranapp/features/auth/signup/presention/manger/cubit/signup_cub
 import 'package:quranapp/features/auth/signup/presention/views/widgets/signup_screen_body.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

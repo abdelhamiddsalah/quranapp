@@ -49,7 +49,7 @@ class UserModel {
       username: json['username'],
       password: json['password'],
       email: json['email'],
-      confirmPassword: json['confirmPassword'],
+      confirmPassword: json['confirmPassword']??'',
       theme: json['theme'],
       role: json['role'],
       enabled: json['enabled'],

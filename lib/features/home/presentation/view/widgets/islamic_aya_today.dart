@@ -24,6 +24,7 @@ class IslamicVerseContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: Colors.black.withOpacity(0.1),
             blurRadius: 8,
             offset: Offset(0, 2),
@@ -51,6 +52,7 @@ class IslamicVerseContainer extends StatelessWidget {
           detailtitle,
             style: TextStyle(
               fontSize: 14,
+              // ignore: deprecated_member_use
               color: Colors.white.withOpacity(0.9),
               fontWeight: FontWeight.w500,
             ),

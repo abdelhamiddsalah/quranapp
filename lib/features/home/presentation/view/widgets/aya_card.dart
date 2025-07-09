@@ -75,6 +75,7 @@ class _QuranCardState extends State<QuranCard> {
         .read<FavoriteCubit>()
         .addFavorite(widget.surah.id, widget.ayah.ayaNumber);
     setState(() => _isFavorite = true);
+    // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('تمت إضافة الآية إلى المفضلة')),
     );

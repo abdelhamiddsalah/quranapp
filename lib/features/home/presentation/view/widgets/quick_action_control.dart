@@ -18,6 +18,7 @@ class QuickActionsContainer extends StatelessWidget {
         border: Border.all(color: Colors.grey.shade300, width: 1),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: Colors.black.withOpacity(0.05),
             blurRadius: 10,
             offset: Offset(0, 2),
@@ -73,6 +74,7 @@ Widget _buildActionButton(String text) {
       borderRadius: BorderRadius.circular(20),
       boxShadow: [
         BoxShadow(
+          // ignore: deprecated_member_use
           color: Color(0xFF4CAF50).withOpacity(0.3),
           blurRadius: 4,
           offset: Offset(0, 2),

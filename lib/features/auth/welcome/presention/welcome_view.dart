@@ -5,13 +5,16 @@ import 'package:quranapp/core/cache/cache_helper.dart';
 import 'package:quranapp/core/routeing/routes.dart';
 
 class WelcomeScreen extends StatefulWidget {
+  const WelcomeScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen>
     with TickerProviderStateMixin {
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
   int _currentPage = 0;
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -108,6 +111,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     Text(
                       '${_currentPage + 1} / ${_pages.length}',
                       style: TextStyle(
+                        // ignore: deprecated_member_use
                         color: Colors.white.withOpacity(0.8),
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -142,6 +146,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                           borderRadius: BorderRadius.circular(2),
                           color: _currentPage >= index
                               ? Colors.white
+                              // ignore: deprecated_member_use
                               : Colors.white.withOpacity(0.3),
                         ),
                       ),
@@ -276,13 +281,16 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   height: 200,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
+                    // ignore: deprecated_member_use
                     color: Colors.white.withOpacity(0.15),
                     border: Border.all(
+                      // ignore: deprecated_member_use
                       color: Colors.white.withOpacity(0.3),
                       width: 3,
                     ),
                     boxShadow: [
                       BoxShadow(
+                        // ignore: deprecated_member_use
                         color: Colors.black.withOpacity(0.1),
                         blurRadius: 20,
                         offset: Offset(0, 10),
@@ -298,6 +306,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                             shape: BoxShape.circle,
                             gradient: RadialGradient(
                               colors: [
+                                // ignore: deprecated_member_use
                                 Colors.white.withOpacity(0.1),
                                 Colors.transparent,
                               ],
@@ -313,6 +322,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: [
                               BoxShadow(
+                                // ignore: deprecated_member_use
                                 color: Colors.black.withOpacity(0.15),
                                 blurRadius: 15,
                                 offset: Offset(0, 8),
@@ -376,6 +386,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                       pageData['description'],
                       style: TextStyle(
                         fontSize: 20,
+                        // ignore: deprecated_member_use
                         color: Colors.white.withOpacity(0.9),
                         height: 1.6,
                       ),
@@ -404,6 +415,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     margin: EdgeInsets.symmetric(horizontal: 6),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
+                      // ignore: deprecated_member_use
                       color: Colors.white.withOpacity(0.3 + (0.4 * value)),
                     ),
                   );
