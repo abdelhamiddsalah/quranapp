@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quranapp/features/auth/profile/presention/manger/cubit/profile_cubit.dart';
-
 import 'package:quranapp/features/auth/profile/presention/views/widgets/profile_view_body.dart';
 
 class ProfileView extends StatefulWidget {
