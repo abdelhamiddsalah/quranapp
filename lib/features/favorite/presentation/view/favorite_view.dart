@@ -12,6 +12,7 @@ class FavoriteView extends StatelessWidget {
     return BlocProvider.value(
       value: sl<FavoriteCubit>()..getFavorites(),
       child:  Scaffold(
+        backgroundColor: Colors.white,
         body:FavoriteViewBody(),
       ),
     );

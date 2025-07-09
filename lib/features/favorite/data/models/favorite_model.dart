@@ -1,4 +1,4 @@
-class SurahModel {
+class FavoriteModel {
   final int id;
   final String arabicName;
   final String? name;
@@ -6,7 +6,7 @@ class SurahModel {
   final int versesCount;
   final String revelationPlace;
 
-  SurahModel({
+  FavoriteModel({
     required this.id,
     required this.arabicName,
     this.name,
@@ -15,8 +15,8 @@ class SurahModel {
     required this.revelationPlace,
   });
 
-  factory SurahModel.fromJson(Map<String, dynamic> json) {
-    return SurahModel(
+  factory FavoriteModel.fromJson(Map<String, dynamic> json) {
+    return FavoriteModel(
       id: json['id'],
       arabicName: json['arabicName'],
       name: json['name'],
@@ -43,7 +43,7 @@ class AyaModel {
   final String ayaText;
   final String? audioUrl;
   final String? ayaTafsir;
-  final SurahModel surah;
+  final FavoriteModel surah;
 
   AyaModel({
     required this.ayaNumber,
@@ -59,7 +59,7 @@ class AyaModel {
       ayaText: json['ayaText'],
       audioUrl: json['audioUrl'],
       ayaTafsir: json['ayaTafsir'],
-      surah: SurahModel.fromJson(json['surah']),
+      surah: FavoriteModel.fromJson(json['surah']),
     );
   }
 
@@ -76,7 +76,7 @@ class AyaModel {
 
 class QuranVerseModel {
   final int id;
-  final SurahModel surah;
+  final FavoriteModel surah;
   final AyaModel aya;
 
   QuranVerseModel({
@@ -88,7 +88,7 @@ class QuranVerseModel {
   factory QuranVerseModel.fromJson(Map<String, dynamic> json) {
     return QuranVerseModel(
       id: json['id'],
-      surah: SurahModel.fromJson(json['surah']),
+      surah: FavoriteModel.fromJson(json['surah']),
       aya: AyaModel.fromJson(json['aya']),
     );
   }

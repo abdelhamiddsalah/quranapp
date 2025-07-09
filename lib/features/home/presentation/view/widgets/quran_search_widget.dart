@@ -45,7 +45,6 @@ class _QuranSearchWidgetState extends State<QuranSearchWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // العنوان
                 Padding(
                   padding: const EdgeInsets.only(left: 9, right: 9),
                   child: Row(
@@ -75,10 +74,9 @@ class _QuranSearchWidgetState extends State<QuranSearchWidget> {
                         child: TextField(
                           controller: _searchController,
                           textAlign: TextAlign.right,
-                                  onChanged: (text) {
-                                    context.read<SearchByAyaCubit>().getAyatBysearch(text);
-                                  },
-                          
+                          onChanged: (text) {
+                            context.read<SearchByAyaCubit>().getAyatBysearch(text);
+                          },
                           decoration: InputDecoration(
                             hintText: 'ابحث في الآيات...',
                             hintStyle: GoogleFonts.tajawal(color: Colors.grey),
@@ -92,8 +90,7 @@ class _QuranSearchWidgetState extends State<QuranSearchWidget> {
                       ),
                       InkWell(
                         onTap: () {
-                        //  context.read<SearchByAyaCubit>().getAyatBysearch(_searchController.text);
-                          FocusScope.of(context).unfocus(); // إخفاء لوحة المفاتيح
+                          FocusScope.of(context).unfocus(); // إخفاء الكيبورد
                         },
                         child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 6),
@@ -113,54 +110,49 @@ class _QuranSearchWidgetState extends State<QuranSearchWidget> {
           ),
 
           // نتائج البحث
-          BlocBuilder<SearchByAyaCubit, SearchByAyaState>(
-            builder: (context, state) {
-              if (state is SearchByAyaLoading) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (state is SearchByAyaError) {
-                return Center(
-                  child: Text(
-                    state.errorMessage,
-                    style: GoogleFonts.tajawal(fontSize: 16, color: Colors.red),
-                  ),
-                );
-              } else if (state is SearchByAyaLoaded) {
-                final searchResults = state.searchResults;
-                if (searchResults.isEmpty) {
+          Expanded(
+            child: BlocBuilder<SearchByAyaCubit, SearchByAyaState>(
+              builder: (context, state) {
+                if (state is SearchByAyaLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (state is SearchByAyaError) {
                   return Center(
                     child: Text(
-                      'لا توجد نتائج للبحث',
-                      style: GoogleFonts.tajawal(fontSize: 16, color: Colors.grey),
+                      state.errorMessage,
+                      style: GoogleFonts.tajawal(fontSize: 16, color: Colors.red),
                     ),
                   );
-                } else {
-                  return Expanded(
-                    child: ListView.builder(
+                } else if (state is SearchByAyaLoaded) {
+                  final searchResults = state.searchResults;
+                  if (searchResults.isEmpty) {
+                    return Center(
+                      child: Text(
+                        'لا توجد نتائج للبحث',
+                        style: GoogleFonts.tajawal(fontSize: 16, color: Colors.grey),
+                      ),
+                    );
+                  } else {
+                    return ListView.builder(
                       itemCount: searchResults.length,
                       itemBuilder: (context, index) {
                         final searchModel = searchResults[index];
                         return SearchRuseltCard(searchModel: searchModel);
                       },
+                    );
+                  }
+                } else {
+                  return Center(
+                    child: Text(
+                      'أدخل كلمة للبحث',
+                      style: GoogleFonts.tajawal(fontSize: 16, color: Colors.grey),
                     ),
                   );
                 }
-              } else {
-                // حالة افتراضية في حال لم يكن هناك حالة محددة
-                return Center(
-                  child: Text(
-                    'أدخل كلمة للبحث',
-                    style: GoogleFonts.tajawal(fontSize: 16, color: Colors.grey),
-                  ),
-                );
-              }
-
-
-            },
+              },
+            ),
           ),
         ],
       ),
     );
   }
 }
-
-// نموذج بيانات نتيجة البحث

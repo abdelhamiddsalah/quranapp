@@ -17,46 +17,52 @@ class SurahDetails extends StatelessWidget {
     required this.audioUrl,
   });
 
- @override
-Widget build(BuildContext context) {
-  return Scaffold(
-    backgroundColor: Colors.white,
-    body: Padding(
-      padding: const EdgeInsets.only(top: 40, left: 16, right: 16),
-      child: BlocBuilder<SurahDetailsCubit, SurahDetailsState>(
-        builder: (context, state) {
-          if (state is SurahDetailsLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is SurahDetailsError) {
-            return Center(child: Text(state.message));
-          } else if (state is SurahDetailsLoaded) {
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  const HomeAppBar(title: 'سورة الفاتحة'),
-                  const SizedBox(height: 16.0),
-                  IslamicVerseContainer(
-                    title: 'سوره الفاتحة',
-                    detailtitle: 'سورة الفاتحة - آية 1',
-                  ),
-                  const SizedBox(height: 16.0),
-                  ListView.builder(
-                    itemBuilder: (context, index) {
-                      final ayah = state.ayat[index];
-                      return QuranCard(ayah: ayah);
-                    },
-                    itemCount: state.ayat.length,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                  ),
-                ],
-              ),
-            );
-          }
-          return const SizedBox(); // لو مفيش حالة
-        },
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Padding(
+        padding: const EdgeInsets.only(top: 40, left: 16, right: 16),
+        child: BlocBuilder<SurahDetailsCubit, SurahDetailsState>(
+          builder: (context, state) {
+            if (state is SurahDetailsLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is SurahDetailsError) {
+              return Center(child: Text(state.message));
+            } else if (state is SurahDetailsLoaded) {
+              final surah = state.response.surah;
+              final ayat = state.response.ayat;
+
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    HomeAppBar(title: surah.nameArabic),
+                    const SizedBox(height: 16.0),
+                    IslamicVerseContainer(
+                      title: surah.nameArabic,
+                      detailtitle: '${surah.nameArabic} - آية 1',
+                    ),
+                    const SizedBox(height: 16.0),
+                    ListView.builder(
+                      itemBuilder: (context, index) {
+                        final ayah = ayat[index];
+                        return QuranCard(
+                          ayah: ayah,
+                          surah: surah ,
+                        );
+                      },
+                      itemCount: ayat.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                    ),
+                  ],
+                ),
+              );
+            }
+            return const SizedBox();
+          },
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 }

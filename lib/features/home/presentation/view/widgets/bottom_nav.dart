@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quranapp/depency_injection.dart';
 import 'package:quranapp/features/auth/profile/presention/manger/cubit/profile_cubit.dart';
 import 'package:quranapp/features/auth/profile/presention/views/profile_view.dart';
+import 'package:quranapp/features/favorite/presentation/view/favorite_view.dart';
 import 'package:quranapp/features/home/presentation/view/home.dart';
-import 'package:quranapp/features/home/presentation/view/widgets/favourite_widget.dart';
-import 'package:quranapp/features/home/presentation/view/widgets/quran_search_widget.dart';
+import 'package:quranapp/features/home/presentation/view/search_view.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -16,13 +16,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 4;
+  int _selectedIndex = 3;
 
   final List<Widget> _pages = [
     BlocProvider.value(value: sl<ProfileCubit>()..getProfile(), child: ProfileView()),
-    FavoriteVerses(),
-    BookmarksPage(),
-    QuranSearchWidget(),
+    FavoriteView(),
+    SearchView(),
     HomePage(),
   ];
 
@@ -59,66 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
               label: 'الملف الشخصي',
             ),
             BottomNavigationBarItem(icon: fixedEmoji('❤️'), label: 'المفضلة'),
-            BottomNavigationBarItem(icon: fixedEmoji('🧠'), label: 'الحفظ'),
             BottomNavigationBarItem(icon: fixedEmoji('🔍'), label: 'البحث'),
             BottomNavigationBarItem(icon: fixedEmoji('🏠'), label: 'الرئيسية'),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-// صفحة المحفوظات
-class BookmarksPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('المحفوظات'),
-        backgroundColor: Colors.orange,
-        foregroundColor: Colors.white,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.bookmark, size: 100, color: Colors.orange),
-            SizedBox(height: 20),
-            Text(
-              'المحفوظات',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-// صفحة الملف الشخصي
-class ProfilePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('الملف الشخصي'),
-          backgroundColor: Colors.purple,
-          foregroundColor: Colors.white,
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.person, size: 100, color: Colors.purple),
-              SizedBox(height: 20),
-              Text(
-                'الملف الشخصي',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
         ),
       ),
     );

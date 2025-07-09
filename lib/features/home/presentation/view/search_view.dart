@@ -10,7 +10,7 @@ class SearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<SearchByAyaCubit>()..getAyatBysearch(''),
+      create: (context) => sl<SearchByAyaCubit>(),
       child: Scaffold(backgroundColor: Colors.white
       ,body: QuranSearchWidget(),
       ),
